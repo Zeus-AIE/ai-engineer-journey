@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Engineer Roadmap 2026 - Interactive Dashboard</title>
+  <title>AI Engineer Roadmap 2026 - Trực Quan Hóa Lộ Trình & Học Tập Thực Chiến</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
@@ -32,103 +32,200 @@
     body { background-color: #0b0f19; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
     .progress-glow { box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
+    pre code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
   </style>
 </head>
 <body class="text-slate-100 min-h-screen flex flex-col">
 
-  <!-- Header & Hero -->
-  <header class="border-b border-slate-800 glass sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+  <!-- Header -->
+  <header class="border-b border-slate-800 glass sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-indigo-500/30">
           <i class="fa-solid fa-brain"></i>
         </div>
         <div>
-          <h1 class="text-xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            AI Engineer Journey 2026
+          <h1 class="text-lg font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            AI Engineer Visual Journey 2026
           </h1>
-          <p class="text-xs text-slate-400">Tổng hợp từ Global Roadmaps & Triết lý thực chiến Mì AI</p>
+          <p class="text-[11px] text-slate-400">Trực quan hóa lộ trình kiến thức thực chiến từ Global Roadmaps & Mì AI</p>
         </div>
       </div>
 
       <!-- Live Hardware / Cloud Status Badge -->
-      <div id="system-badge" class="flex items-center gap-3 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-700 text-xs">
+      <div id="system-badge" class="flex items-center gap-2.5 bg-slate-900/80 px-3.5 py-1.5 rounded-xl border border-slate-700 text-xs">
         <span class="flex h-2.5 w-2.5 relative">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
         </span>
-        <span id="system-text" class="text-slate-300">Đang khởi tạo trạng thái...</span>
+        <span id="system-text" class="text-slate-300">Đang quét môi trường...</span>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 flex-1 w-full">
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-1 w-full">
 
-    <!-- Progress Overview Card -->
-    <div class="glass p-6 rounded-2xl relative overflow-hidden">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+    <!-- Progress Overview & Search Bar -->
+    <div class="glass p-5 rounded-2xl relative overflow-hidden">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-4">
         <div>
-          <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-chart-line text-indigo-400"></i> Tiến Độ Lộ Trình Của Bạn
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-indigo-400"></i> Tiến Độ Lộ Trình & Học Tập Trực Quan
           </h2>
-          <p class="text-sm text-slate-400">Hoàn thành các bài thực hành và tích chọn để lưu lại tiến trình (tự động đồng bộ trên đám mây & trình duyệt).</p>
+          <p class="text-xs text-slate-400">Bấm vào bất kỳ bài học nào để **xem nội dung chi tiết, sơ đồ luồng và code mẫu thực hành**.</p>
         </div>
-        <div class="flex items-baseline gap-2">
-          <span id="progress-percent" class="text-3xl font-black text-indigo-400">0%</span>
-          <span id="progress-counts" class="text-xs text-slate-400">(0/17 Labs)</span>
+
+        <!-- Search Box -->
+        <div class="relative w-full lg:w-72">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+          <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="Tìm kiếm RAG, YOLO, Docker, MCP..." 
+                 class="w-full bg-slate-900/80 border border-slate-700 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500">
         </div>
       </div>
       
       <!-- Progress Bar -->
-      <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
-        <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 h-3 rounded-full progress-glow transition-all duration-500" style="width: 0%"></div>
+      <div class="flex items-center gap-3">
+        <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+          <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 h-2.5 rounded-full progress-glow transition-all duration-500" style="width: 0%"></div>
+        </div>
+        <div class="flex items-baseline gap-1.5 min-w-max">
+          <span id="progress-percent" class="text-lg font-black text-indigo-400">0%</span>
+          <span id="progress-counts" class="text-[11px] text-slate-400">(0/17 Labs)</span>
+        </div>
       </div>
     </div>
 
-    <!-- Source Benchmarks Banner -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-      <a href="https://github.com/Ch-Balaji/ai-engineer-roadmap" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
-        <i class="fa-brands fa-github text-indigo-400 text-base"></i>
-        <span>Ch-Balaji Roadmap</span>
-      </a>
-      <a href="https://github.com/mlabonne/llm-course" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
-        <i class="fa-brands fa-github text-purple-400 text-base"></i>
-        <span>mlabonne LLM Course</span>
-      </a>
-      <a href="https://roadmap.sh/ai-engineer" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
-        <i class="fa-solid fa-map text-emerald-400 text-base"></i>
-        <span>roadmap.sh AI Engineer</span>
-      </a>
-      <a href="https://miai.vn" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
-        <i class="fa-solid fa-bowl-food text-amber-400 text-base"></i>
-        <span>Mì AI Ecosystem</span>
-      </a>
+    <!-- 🗺️ Visual Architecture Map (Bản Đồ Cây Kỹ Năng Trực Quan) -->
+    <div class="glass p-5 rounded-2xl border border-slate-800">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+          <i class="fa-solid fa-diagram-project text-indigo-400"></i> Bản Đồ Tuyến Kỹ Năng (Pipeline AI Engineer 2026)
+        </h3>
+        <span class="text-[11px] text-indigo-400">Click từng chặng để xem nhanh</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+        <div onclick="filterPhase(1)" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-indigo-500/30 hover:border-indigo-400 transition-all flex flex-col justify-between group">
+          <div class="flex items-center justify-between">
+            <span class="text-indigo-400 font-bold font-mono">01. FOUNDATIONS</span>
+            <i class="fa-solid fa-server text-indigo-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="my-2 font-semibold text-slate-200">Linux • Docker • CUDA</div>
+          <div class="text-[10px] text-slate-400">Hạ tầng chạy code AI & Quản lý môi trường</div>
+        </div>
+
+        <div onclick="filterPhase(2)" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-purple-500/30 hover:border-purple-400 transition-all flex flex-col justify-between group">
+          <div class="flex items-center justify-between">
+            <span class="text-purple-400 font-bold font-mono">02. ML & VISION</span>
+            <i class="fa-solid fa-eye text-purple-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="my-2 font-semibold text-slate-200">YOLO • OpenCV • FastAPI</div>
+          <div class="text-[10px] text-slate-400">Computer Vision thời gian thực & Serving</div>
+        </div>
+
+        <div onclick="filterPhase(3)" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-emerald-500/30 hover:border-emerald-400 transition-all flex flex-col justify-between group">
+          <div class="flex items-center justify-between">
+            <span class="text-emerald-400 font-bold font-mono">03. RAG & LLM</span>
+            <i class="fa-solid fa-database text-emerald-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="my-2 font-semibold text-slate-200">Docling • VectorDB • Cache</div>
+          <div class="text-[10px] text-slate-400">Truy xuất tri thức & Tối ưu token chi phí</div>
+        </div>
+
+        <div onclick="filterPhase(4)" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-amber-500/30 hover:border-amber-400 transition-all flex flex-col justify-between group">
+          <div class="flex items-center justify-between">
+            <span class="text-amber-400 font-bold font-mono">04. AGENTIC & MCP</span>
+            <i class="fa-solid fa-robot text-amber-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="my-2 font-semibold text-slate-200">LangGraph • MCP • n8n</div>
+          <div class="text-[10px] text-slate-400">Agent tự hành suy nghĩ & Công cụ tool use</div>
+        </div>
+
+        <div onclick="filterPhase(5)" class="cursor-pointer p-3 rounded-xl bg-slate-900/90 border border-rose-500/30 hover:border-rose-400 transition-all flex flex-col justify-between group">
+          <div class="flex items-center justify-between">
+            <span class="text-rose-400 font-bold font-mono">05. MLOPS & PRIVACY</span>
+            <i class="fa-solid fa-shield-halved text-rose-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="my-2 font-semibold text-slate-200">Ollama • WebUI • Security</div>
+          <div class="text-[10px] text-slate-400">Private AI Stack & Phòng thủ Prompt Injection</div>
+        </div>
+      </div>
     </div>
 
     <!-- Phase Filter Tabs -->
-    <div class="flex gap-2 overflow-x-auto pb-2 border-b border-slate-800" id="phase-tabs">
-      <button onclick="filterPhase('all')" class="phase-tab-btn active px-4 py-2 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition-all">Tất cả giai đoạn</button>
-      <button onclick="filterPhase(1)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 1: Hạ tầng</button>
-      <button onclick="filterPhase(2)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 2: ML & CV</button>
-      <button onclick="filterPhase(3)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 3: RAG & LLM</button>
-      <button onclick="filterPhase(4)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 4: Agent & MCP</button>
-      <button onclick="filterPhase(5)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 5: Production</button>
+    <div class="flex gap-2 overflow-x-auto pb-1 border-b border-slate-800" id="phase-tabs">
+      <button onclick="filterPhase('all')" class="phase-tab-btn active px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition-all">Tất cả giai đoạn</button>
+      <button onclick="filterPhase(1)" class="phase-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">GĐ 1: Hạ tầng</button>
+      <button onclick="filterPhase(2)" class="phase-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">GĐ 2: ML & CV</button>
+      <button onclick="filterPhase(3)" class="phase-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">GĐ 3: RAG & LLM</button>
+      <button onclick="filterPhase(4)" class="phase-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">GĐ 4: Agent & MCP</button>
+      <button onclick="filterPhase(5)" class="phase-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">GĐ 5: Production</button>
     </div>
 
-    <!-- Phases Container -->
+    <!-- Phases List -->
     <div id="phases-list" class="space-y-6"></div>
 
   </main>
 
-  <footer class="border-t border-slate-800 mt-12 py-6 text-center text-xs text-slate-500">
-    <p>AI Engineer Practical Journey 2026 • Live on GitHub Pages • Powered by Zeus-AIE</p>
+  <!-- 📖 DETAILED MODAL / SLIDE-OVER (TRỰC QUAN HÓA NỘI DUNG & CODE MẪU) -->
+  <div id="detail-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950/60">
+        <div>
+          <span id="modal-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20"></span>
+          <h3 id="modal-title" class="text-base font-bold text-white mt-1"></h3>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-sm transition-all">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="flex border-b border-slate-800 bg-slate-900/50 px-6 gap-2 text-xs overflow-x-auto">
+        <button onclick="switchModalTab('theory')" id="mtab-theory" class="mtab-btn active py-2.5 px-3 border-b-2 border-indigo-500 text-indigo-400 font-bold flex items-center gap-1.5">
+          <i class="fa-solid fa-book-open"></i> Lý Thuyết Cốt Lõi
+        </button>
+        <button onclick="switchModalTab('diagram')" id="mtab-diagram" class="mtab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-400 font-medium hover:text-slate-200 flex items-center gap-1.5">
+          <i class="fa-solid fa-network-wired"></i> Sơ Đồ Kiến Trúc
+        </button>
+        <button onclick="switchModalTab('code')" id="mtab-code" class="mtab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-400 font-medium hover:text-slate-200 flex items-center gap-1.5">
+          <i class="fa-solid fa-code"></i> Thực Hành & Code Mẫu
+        </button>
+        <button onclick="switchModalTab('interview')" id="mtab-interview" class="mtab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-400 font-medium hover:text-slate-200 flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-question"></i> Góc Phỏng Vấn AI
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 flex-1">
+        <div id="mcontent-theory" class="modal-tab-content space-y-3"></div>
+        <div id="mcontent-diagram" class="modal-tab-content space-y-3 hidden"></div>
+        <div id="mcontent-code" class="modal-tab-content space-y-3 hidden"></div>
+        <div id="mcontent-interview" class="modal-tab-content space-y-3 hidden"></div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3 border-t border-slate-800 bg-slate-950/60 flex justify-between items-center text-xs">
+        <span class="text-slate-500">Mì AI Practical Blueprint & Global Standards</span>
+        <button onclick="closeModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all">
+          Đóng cửa sổ
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+    <p>AI Engineer Visual Journey 2026 • Live on GitHub Pages • Powered by Zeus-AIE & Mì AI</p>
   </footer>
 
   <script>
-    // Embedded Default Roadmap Data (Dual-mode: works standalone on GitHub Pages and with local server)
-    const DEFAULT_ROADMAP_DATA = {
-      "title": "AI Engineer Roadmap 2026 - Interactive Journey",
+    // DỮ LIỆU TOÀN DIỆN VỀ LỘ TRÌNH VÀ CHI TIẾT NỘI DUNG TỪNG BÀI LAB
+    const ENRICHED_ROADMAP = {
       "phases": [
         {
           "id": 1,
@@ -139,10 +236,142 @@
           "duration": "3-4 Tuần",
           "skills": ["Linux / VPS", "Docker & Compose", "Python Virtualenv", "PyTorch CUDA", "Git Architecture"],
           "labs": [
-            {"id": "p1_lab1", "title": "Lab 1: Quét hệ thống phần cứng & Virtualenv (env_probe.py)", "completed": true},
-            {"id": "p1_lab2", "title": "Lab 2: Đóng gói AI Microservice với Docker Hot-Reload", "completed": false},
-            {"id": "p1_lab3", "title": "Lab 3: Cấu hình Headless Jupyter Server an toàn với SSH Tunneling", "completed": false},
-            {"id": "p1_lab4", "title": "Lab 4: Chuẩn hóa cấu trúc thư mục dự án AI chuẩn Production", "completed": false}
+            {
+              "id": "p1_lab1",
+              "title": "Lab 1: Quét hệ thống phần cứng & Virtualenv (env_probe.py)",
+              "completed": true,
+              "desc": "Kiểm tra phần cứng CPU, RAM, phát hiện GPU NVIDIA RTX 3060, phiên bản CUDA 12.1 và trạng thái môi trường ảo.",
+              "theory": `
+                <h4 class="text-base font-bold text-white">Tại sao một AI Engineer phải nắm phần cứng?</h4>
+                <p>Khác với Web Developer thông thường, AI Engineer liên tục làm việc với các phép tính ma trận (Matrix Multiplication) cực lớn. Khi chạy inference hoặc huấn luyện:</p>
+                <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                  <li><strong>CPU:</strong> Xử lý dữ liệu thô (ETL, Tokenization, Data Preprocessing). Càng nhiều core (như máy bạn có 16 cores) thì DataLoader nạp dữ liệu càng nhanh.</li>
+                  <li><strong>GPU VRAM:</strong> Nơi nạp Model Weights và Context KV-Cache. 6GB VRAM của RTX 3060 đủ để chạy các mô hình ngôn ngữ 3B parameters (4-bit quantization) và YOLOv8 siêu tốc.</li>
+                  <li><strong>CUDA & Tensor Cores:</strong> Tăng tốc độ tính toán gấp 10-50 lần so với CPU thuần.</li>
+                </ul>
+              `,
+              "diagram": `
+                <div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-indigo-300 border border-slate-800">
+[ Máy Tính Người Dùng (User Input) ]
+         │
+         ▼
+[ CPU (16 Cores) ] ──> Tiền xử lý, Tokenization, DataLoader
+         │
+         ▼
+[ PCI Express Bus ] ──> Đẩy Tensor vào VRAM (6GB)
+         │
+         ▼
+[ GPU RTX 3060 (CUDA 12.1) ] ──> Nhân ma trận song song (Tensor Cores)
+         │
+         ▼
+[ Kết quả dự đoán / Embeddings / Tokens trả về ]
+                </div>
+              `,
+              "code": `
+                <p class="text-xs text-slate-400">Lệnh chạy script kiểm tra phần cứng trong thư mục dự án:</p>
+                <pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400 border border-slate-800 overflow-x-auto">cd phase-1-foundation/01-python-env
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+python env_probe.py</pre>
+              `,
+              "interview": `
+                <p><strong>Q: Tại sao phải dùng virtualenv và không bao giờ cài thư viện toàn cục?</strong></p>
+                <p class="text-slate-400">A: Tránh xung đột phụ thuộc (Dependency Hell). Ví dụ mô hình Computer Vision dùng NumPy 1.24, trong khi thư viện mới lại yêu cầu NumPy 2.0. Môi trường cô lập giúp tái lập chính xác ứng dụng trên server mà không gây lỗi phiên bản.</p>
+              `
+            },
+            {
+              "id": "p1_lab2",
+              "title": "Lab 2: Đóng gói AI Microservice với Docker Hot-Reload",
+              "completed": false,
+              "desc": "Viết Dockerfile tối ưu (Python 3.11-slim, multi-layer cache, non-root user) và docker-compose.yml có volume mount.",
+              "theory": `
+                <h4 class="text-base font-bold text-white">Quy tắc vàng đóng gói Docker cho AI</h4>
+                <p>Mô hình AI khi đem lên Production (Kubernetes, Cloud Run, VPS) không thể triển khai dạng 'chạy chay'. Ta cần Docker để:</p>
+                <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                  <li>Khóa cứng phiên bản Python và hệ điều hành (Debian Slim) bất biến.</li>
+                  <li>Tận dụng Docker Cache: Copy file requirements.txt trước để Docker không phải tải lại các wheel nặng (PyTorch, Transformers) mỗi khi sửa code.</li>
+                  <li>Bảo mật Non-root: Không bao giờ chạy container dưới quyền root trong môi trường ngân hàng / doanh nghiệp.</li>
+                </ul>
+              `,
+              "diagram": `
+                <div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-indigo-300 border border-slate-800">
+[ Source Code Local ] ──(Volume Mount)──> [ Docker Container ]
+        │                                        │
+    Hot Reload                               Cổng 8000
+        │                                        │
+        ▼                                        ▼
+[ Người dùng sửa file app.py ]        [ http://localhost:8000 ]
+                </div>
+              `,
+              "code": `
+                <pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400 border border-slate-800 overflow-x-auto">cd phase-1-foundation/02-docker-essentials
+docker compose up --build
+# Mở trình duyệt: http://localhost:8000</pre>
+              `,
+              "interview": `
+                <p><strong>Q: Docker Layer Caching hoạt động như thế nào khi build AI app?</strong></p>
+                <p class="text-slate-400">A: Mỗi lệnh RUN, COPY trong Dockerfile tạo thành một layer. Bằng cách đặt 'COPY requirements.txt .' và 'RUN pip install' trước khi 'COPY . .', Docker sẽ giữ nguyên cache thư viện nặng khi chỉ có file mã nguồn thay đổi, rút ngắn thời gian build từ 5 phút xuống 2 giây.</p>
+              `
+            },
+            {
+              "id": "p1_lab3",
+              "title": "Lab 3: Cấu hình Headless Jupyter Server an toàn với SSH Tunneling",
+              "completed": false,
+              "desc": "Triển khai Jupyter Lab trên VPS Linux không giao diện, băm mật khẩu Argon2 và thiết lập đường hầm SSH mã hóa.",
+              "theory": `
+                <h4 class="text-base font-bold text-white">Bài học bảo mật từ Mì AI</h4>
+                <p>Nếu mở cổng 8888 ra Internet mà không có mật khẩu, máy chủ sẽ bị hacker chiếm quyền điều khiển chỉ trong vài giây. Giải pháp an toàn nhất của kỹ sư là <strong>SSH Tunneling</strong>:</p>
+                <p class="text-slate-400">Jupyter chỉ lắng nghe tại localhost của server (127.0.0.1:8888). Kỹ sư tạo đường hầm mã hóa từ máy tính cá nhân đến server, hoàn toàn miễn nhiễm với các đợt quét cổng ngoài Internet.</p>
+              `,
+              "diagram": `
+                <div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-indigo-300 border border-slate-800">
+[ Máy Tính Của Bạn ]                                  [ VPS Cloud / Server AI ]
+  localhost:8888  ───(Đường hầm SSH bảo mật)───>   Jupyter (127.0.0.1:8888)
+                                                    (Tường lửa UFW chặn ngoài)
+                </div>
+              `,
+              "code": `
+                <pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400 border border-slate-800 overflow-x-auto"># Băm mật khẩu:
+python -c "from jupyter_server.auth import passwd; print(passwd('mat_khau'))"
+
+# Tạo đường hầm SSH từ máy cá nhân:
+ssh -N -f -L 8888:localhost:8888 user@remote_server_ip</pre>
+              `,
+              "interview": `
+                <p><strong>Q: SSH Tunneling (-L) khác gì so với mở port trên Security Group / Firewall?</strong></p>
+                <p class="text-slate-400">A: Mở port trên Firewall để lộ cổng trực tiếp ra Internet công cộng (nguy cơ tấn công dò mật khẩu Bruteforce hoặc lỗ hổng Zero-day). SSH Tunneling tận dụng xác thực bằng cặp SSH Key (Asymmetric Encryption) an toàn tuyệt đối mà không cần mở cổng dịch vụ ra ngoài.</p>
+              `
+            },
+            {
+              "id": "p1_lab4",
+              "title": "Lab 4: Chuẩn hóa cấu trúc thư mục dự án AI chuẩn Production",
+              "completed": false,
+              "desc": "Thiết lập cấu trúc thư mục dữ liệu phân tầng (data/raw, data/processed, models/, src/, tests/) và .gitignore chuẩn.",
+              "theory": `
+                <h4 class="text-base font-bold text-white">Kiến trúc Repository chuẩn cho AI</h4>
+                <p>Dự án AI khác dự án phần mềm ở chỗ: có dữ liệu lớn và file trọng số mô hình (.pt, .safetensors) lên đến hàng Gigabyte. Không bao giờ được commit các file này vào Git mà phải dùng DVC (Data Version Control) hoặc lưu tại Object Storage (S3/GCS).</p>
+              `,
+              "diagram": `
+                <div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-indigo-300 border border-slate-800">
+my-ai-repo/
+├── data/
+│   ├── raw/         <- Dữ liệu gốc bất biến
+│   └── processed/   <- Dữ liệu sạch cho Train / Vector Store
+├── models/          <- Checkpoints (Bỏ qua trên Git)
+├── notebooks/       <- Nghiên cứu thử nghiệm POC
+├── src/             <- Mã nguồn Production (api/, core/, utils/)
+└── tests/           <- Unit tests
+                </div>
+              `,
+              "code": `
+                <pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400 border border-slate-800 overflow-x-auto"># Xem mẫu .gitignore chuẩn trong repo:
+cat phase-1-foundation/04-standard-project-template/.gitignore</pre>
+              `,
+              "interview": `
+                <p><strong>Q: Tại sao không nên đưa toàn bộ code từ Jupyter Notebook vào môi trường Production?</strong></p>
+                <p class="text-slate-400">A: Notebook lưu trữ trạng thái ngoài luồng (out-of-order execution), khó viết automated test, khó theo dõi diff trên git và dễ rò rỉ bộ nhớ. Khi lên Production, cần modular hóa code thành các module Python thuần (.py) có type hints và test case.</p>
+              `
+            }
           ]
         },
         {
@@ -154,9 +383,40 @@
           "duration": "3-4 Tuần",
           "skills": ["Model Training Lifecycle", "OpenCV Video Stream", "YOLOv8/11 Inference", "FastAPI Endpoints"],
           "labs": [
-            {"id": "p2_lab1", "title": "Lab 1: Huấn luyện và đánh giá mô hình ML cơ bản (Loss, Metrics)", "completed": false},
-            {"id": "p2_lab2", "title": "Lab 2: Nhận diện vật thể thời gian thực với YOLO trên GPU RTX 3060", "completed": false},
-            {"id": "p2_lab3", "title": "Lab 3: Xây dựng REST API phục vụ mô hình Computer Vision", "completed": false}
+            {
+              "id": "p2_lab1",
+              "title": "Lab 1: Huấn luyện và đánh giá mô hình ML cơ bản (Loss, Metrics)",
+              "completed": false,
+              "desc": "Hiểu rõ vòng đời Train-Val-Test, hiện tượng Overfitting/Underfitting, các chỉ số Precision, Recall, F1-Score.",
+              "theory": `<p>Nền tảng của mọi kỹ sư AI: Hiểu rõ hàm mất mát (Cross-Entropy, MSE) và biết cách chẩn đoán mô hình khi bị học vẹt (Overfitting) bằng Regularization, Dropout.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-purple-300">Raw Data -> Train Set (70%) / Val Set (15%) / Test Set (15%) -> Model Training -> Evaluate Metrics</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">pip install scikit-learn pandas numpy matplotlib</pre>`,
+              "interview": `<p><strong>Q: Khi dữ liệu bị mất cân bằng trầm trọng (Imbalanced Data), dùng Accuracy có được không?</strong><br>A: Không. Phải dùng Precision, Recall, F1-Score hoặc PR-AUC.</p>`
+            },
+            {
+              "id": "p2_lab2",
+              "title": "Lab 2: Nhận diện vật thể thời gian thực với YOLO trên GPU RTX 3060",
+              "completed": false,
+              "desc": "Chạy mô hình YOLOv8/11 với PyTorch CUDA, xử lý Bounding Box, IoU và Non-Max Suppression.",
+              "theory": `<p>YOLO (You Only Look Once) biến bài toán phát hiện vật thể thành một bài toán hồi quy duy nhất, cho phép xử lý 60-120 khung hình/giây trên card RTX 3060.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-purple-300">Camera Stream -> Frame Tensor -> YOLO Backbone (CUDA) -> NMS Filtering -> Bounding Boxes</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">from ultralytics import YOLO
+model = YOLO('yolov8n.pt')
+results = model(source=0, show=True, device=0) # device=0 chạy trên RTX 3060</pre>`,
+              "interview": `<p><strong>Q: Non-Max Suppression (NMS) giải quyết bài toán gì trong Object Detection?</strong><br>A: Loại bỏ các bounding box trùng lặp cùng phát hiện một đối tượng dựa trên ngưỡng IoU.</p>`
+            },
+            {
+              "id": "p2_lab3",
+              "title": "Lab 3: Xây dựng REST API phục vụ mô hình Computer Vision",
+              "completed": false,
+              "desc": "Đóng gói mô hình thành API nhận ảnh Multipart-form và trả kết quả nhãn + tọa độ dạng JSON bằng FastAPI.",
+              "theory": `<p>Tách biệt tầng mô hình (Model Layer) và tầng giao tiếp mạng (HTTP Layer) để hệ thống có thể scale độc lập.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-purple-300">Client -> POST /predict (Image) -> FastAPI -> YOLO Tensor (GPU) -> JSON Response [ {box, label, conf} ]</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">@app.post("/predict")
+async def predict(file: UploadFile = File(...)):
+    # Inference code</pre>`,
+              "interview": `<p><strong>Q: Làm sao để tối ưu hóa throughput khi nhiều request gửi ảnh tới cùng lúc?</strong><br>A: Sử dụng Dynamic Batching (gom các ảnh thành 1 batch tensor lớn để đẩy vào GPU một lần) hoặc Triton Inference Server.</p>`
+            }
           ]
         },
         {
@@ -168,10 +428,53 @@
           "duration": "5-6 Tuần",
           "skills": ["Transformer Architecture", "Document Parsing (Docling)", "Chunking Strategies", "Vector DB & Reranking", "Prompt Caching"],
           "labs": [
-            {"id": "p3_lab1", "title": "Lab 1: Thử nghiệm trích xuất tài liệu phức tạp (PDF bảng biểu) với IBM Docling", "completed": false},
-            {"id": "p3_lab2", "title": "Lab 2: Xây dựng hệ thống RAG 'code chay' Python kết hợp Vector Database", "completed": false},
-            {"id": "p3_lab3", "title": "Lab 3: Tối ưu chi phí token và độ trễ với Prompt Caching", "completed": false},
-            {"id": "p3_lab4", "title": "Lab 4: Fine-tune mô hình Embedding cho văn bản Tiếng Việt", "completed": false}
+            {
+              "id": "p3_lab1",
+              "title": "Lab 1: Thử nghiệm trích xuất tài liệu phức tạp (PDF bảng biểu) với IBM Docling",
+              "completed": false,
+              "desc": "Bóc tách cấu trúc văn bản phân cấp, bảng biểu và công thức toán học từ PDF sang định dạng Markdown tối ưu cho LLM.",
+              "theory": `<p>80% chất lượng của hệ thống RAG phụ thuộc vào chất lượng bóc tách dữ liệu đầu vào. IBM Docling giải quyết bài toán bảng biểu phức tạp và cấu trúc heading mà các bộ đọc PDF cũ thường làm gãy nát.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-emerald-300">PDF File -> IBM Docling (Layout Analysis & OCR) -> Structured Markdown with Tables -> Clean Chunks</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">from docling.document_converter import DocumentConverter
+converter = DocumentConverter()
+result = converter.convert("tai_lieu_ngan_hang.pdf")
+print(result.document.export_to_markdown())</pre>`,
+              "interview": `<p><strong>Q: Tại sao trích xuất bảng biểu trong PDF cho RAG lại khó?</strong><br>A: PDF không lưu dữ liệu theo hàng/cột mà lưu các ký tự có tọa độ đồ họa. Nếu đọc theo dòng ngang sẽ làm trộn lẫn dữ liệu các cột.</p>`
+            },
+            {
+              "id": "p3_lab2",
+              "title": "Lab 2: Xây dựng hệ thống RAG 'code chay' Python kết hợp Vector Database",
+              "completed": false,
+              "desc": "Tự viết luồng RAG từ đầu không dùng LangChain: Embedding -> Qdrant/Chroma -> Cosine Similarity -> Top-K -> LLM Generation.",
+              "theory": `<p>Tự viết 'code chay' giúp bạn hiểu cặn kẽ từng bước, không bị phụ thuộc vào sự trừu tượng hóa của các framework.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-emerald-300">User Query -> Embedding Model -> Cosine Search trong VectorDB -> Top Chunks -> Prompt [Context + Query] -> LLM Answer</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400"># 1. Embed query
+query_vector = embed_model.encode(query)
+# 2. Search
+hits = client.search(collection_name="docs", query_vector=query_vector, limit=3)</pre>`,
+              "interview": `<p><strong>Q: Cosine Similarity khác gì Euclidean Distance (L2) trong tìm kiếm vector?</strong><br>A: Cosine đo góc giữa 2 vector (độ tương đồng ngữ nghĩa, độc lập với độ dài văn bản), còn L2 đo khoảng cách hình học.</p>`
+            },
+            {
+              "id": "p3_lab3",
+              "title": "Lab 3: Tối ưu chi phí token và độ trễ với Prompt Caching",
+              "completed": false,
+              "desc": "Áp dụng cơ chế Prompt Caching của Anthropic/Gemini để giảm tới 80% chi phí và giảm 50% độ trễ (latency).",
+              "theory": `<p>Khi tài liệu RAG lên tới hàng chục nghìn token, việc gửi lại toàn bộ tài liệu trong mỗi câu hỏi gây tốn kém khủng khiếp. Prompt Caching lưu trữ KV-Cache trên máy chủ API.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-emerald-300">Request 1: Prompt [Tài liệu lớn (100K token)] -> LLM tính toán + Lưu Cache (Full cost)
+Request 2: Prompt [Cache Hit!] + [Câu hỏi mới] -> Trả lời ngay (Giảm 80% chi phí)</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400"># Dùng headers hoặc cache_control trong API payload</pre>`,
+              "interview": `<p><strong>Q: Điều kiện để một đoạn Prompt được Cache là gì?</strong><br>A: Phải nằm ở phần đầu của prompt (Prefix Matching) và vượt qua ngưỡng độ dài tối thiểu (thường từ 1024 token trở lên).</p>`
+            },
+            {
+              "id": "p3_lab4",
+              "title": "Lab 4: Fine-tune mô hình Embedding cho văn bản Tiếng Việt",
+              "completed": false,
+              "desc": "Dùng kỹ thuật Contrastive Learning (MultipleNegativesRankingLoss) để tinh chỉnh mô hình Embedding trên Google Colab.",
+              "theory": `<p>Các mô hình Embedding quốc tế thường kém nhạy với từ lóng, thuật ngữ chuyên ngành tài chính hoặc pháp luật Việt Nam. Fine-tuning giúp kéo gần các cặp câu hỏi-đáp liên quan.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-emerald-300">Pairs: (Anchor, Positive) -> Contrastive Loss -> Tối ưu không gian Vector cho tiếng Việt</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">from sentence_transformers import SentenceTransformer, InputExample, losses</pre>`,
+              "interview": `<p><strong>Q: Tại sao không nên fine-tune cả LLM lớn mà nên fine-tune Embedding trước?</strong><br>A: Fine-tune LLM tốn kém hàng nghìn USD phần cứng và dễ gây quên kiến thức cũ. Fine-tune Embedding rẻ hơn 100 lần và trực tiếp nâng độ chính xác của RAG.</p>`
+            }
           ]
         },
         {
@@ -183,9 +486,43 @@
           "duration": "4-5 Tuần",
           "skills": ["LangGraph StateGraph", "Memory Systems (Memori)", "Model Context Protocol (MCP)", "n8n AI Workflows"],
           "labs": [
-            {"id": "p4_lab1", "title": "Lab 1: Xây dựng hệ thống Multi-Agent phân nhánh với LangGraph", "completed": false},
-            {"id": "p4_lab2", "title": "Lab 2: Tự viết MCP Server trong 5 phút cấp quyền cho Claude/Cursor/Agent", "completed": false},
-            {"id": "p4_lab3", "title": "Lab 3: Dựng luồng tự động hóa n8n tích hợp Gemini Node và Webhook", "completed": false}
+            {
+              "id": "p4_lab1",
+              "title": "Lab 1: Xây dựng hệ thống Multi-Agent phân nhánh với LangGraph",
+              "completed": false,
+              "desc": "Tạo StateGraph với các Nodes (Router, SQL Agent, Summarizer) và Edges điều kiện (Conditional Branching).",
+              "theory": `<p>Agentic AI không chỉ trả lời mà biết lập kế hoạch (Plan), gọi công cụ (Tool Call) và tự sửa lỗi khi kết quả không đạt.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-amber-300">[ User Input ] -> [ Router Node ] ──> [ Tra Cứu Database ] ──> [ Kiểm Tra Kết Quả ] ──> [ Trả Lời ]
+                                         │
+                                         └──> [ Tra Cứu Tài Liệu ] ─┘</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">from langgraph.graph import StateGraph, END</pre>`,
+              "interview": `<p><strong>Q: Điểm khác biệt lớn nhất giữa LangChain Chain và LangGraph là gì?</strong><br>A: LangChain Chain là đồ thị có hướng không chu trình (DAG - một chiều), còn LangGraph hỗ trợ chu trình (Cycles) và vòng lặp phản hồi (Loop/Correction).</p>`
+            },
+            {
+              "id": "p4_lab2",
+              "title": "Lab 2: Tự viết MCP Server trong 5 phút cấp quyền cho Claude/Cursor/Agent",
+              "completed": false,
+              "desc": "Triển khai giao thức Model Context Protocol (MCP) chuẩn hóa việc kết nối AI Agent với cơ sở dữ liệu nội bộ.",
+              "theory": `<p>MCP là chuẩn giao thức mở do Anthropic khởi xướng (tương tự giao thức USB-C cho AI), giúp chuẩn hóa cách mọi AI kết nối với Tools và Resources bên ngoài.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-amber-300">[ Claude Desktop / Cursor IDE / LangGraph ] <───(Giao thức MCP JSON-RPC)───> [ MCP Server ] ──> Database / File System</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("BankService")
+
+@mcp.tool()
+def get_exchange_rate(currency: str) -> float:
+    return 25400.0</pre>`,
+              "interview": `<p><strong>Q: Tại sao MCP lại ưu việt hơn việc viết tool calling thủ công cho từng loại LLM?</strong><br>A: Viết MCP Server 1 lần thì dùng chung được cho Claude, OpenAI, Cursor, Claude Code mà không cần code lại logic kết nối.</p>`
+            },
+            {
+              "id": "p4_lab3",
+              "title": "Lab 3: Dựng luồng tự động hóa n8n tích hợp Gemini Node và Webhook",
+              "completed": false,
+              "desc": "Tự động hóa quy trình nhận email, phân tích bằng AI và bắn cảnh báo về Telegram bằng n8n Docker Compose.",
+              "theory": `<p>Kết hợp sức mạnh của No-code Automation (n8n) với GenAI giúp triển khai nhanh các quy trình nghiệp vụ doanh nghiệp.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-amber-300">Webhook Event -> n8n Pipeline -> Gemini Node (Phân tích cảm xúc) -> Filter (Khách phàn nàn) -> Bắn Telegram Alert</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">docker compose up -d # chạy cụm n8n container</pre>`,
+              "interview": `<p><strong>Q: Khi nào nên code Python thuần và khi nào nên dùng n8n?</strong><br>A: n8n cực nhanh cho việc tích hợp webhook, gửi email, notify Slack/Telegram. Python thuần bắt buộc cho logic biến đổi dữ liệu phức tạp hoặc custom model inference.</p>`
+            }
           ]
         },
         {
@@ -197,21 +534,54 @@
           "duration": "3-4 Tuần",
           "skills": ["Local SLM / Ollama", "Open WebUI", "Private AI Architecture", "Prompt Injection Defense", "Responsible & Ethical AI"],
           "labs": [
-            {"id": "p5_lab1", "title": "Lab 1: Triển khai cụm Private AI Stack nội bộ (Ollama + Open WebUI)", "completed": false},
-            {"id": "p5_lab2", "title": "Lab 2: Thiết lập Guardrails phòng thủ tấn công Prompt Injection & rò rỉ dữ liệu", "completed": false},
-            {"id": "p5_lab3", "title": "Lab 3: Đóng gói đồ án Capstone hoàn chỉnh với Docker và CI/CD", "completed": false}
+            {
+              "id": "p5_lab1",
+              "title": "Lab 1: Triển khai cụm Private AI Stack nội bộ (Ollama + Open WebUI)",
+              "completed": false,
+              "desc": "Chạy các mô hình nguồn mở (Qwen 2.5, Llama 3.2) hoàn toàn trên GPU nội bộ, ngắt kết nối Internet bên ngoài để bảo vệ dữ liệu bí mật.",
+              "theory": `<p>Đối với ngành Ngân hàng và Tài chính, việc gửi dữ liệu khách hàng lên Cloud công cộng có thể vi phạm luật bảo vệ dữ liệu cá nhân. Private AI Stack là yêu cầu bắt buộc.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-rose-300">[ User Browser ] -> [ Open WebUI (Docker) ] -> [ Ollama Local Engine ] -> [ RTX 3060 VRAM (Qwen2.5-3B) ]
+                                             (100% Offline trong mạng nội bộ)</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">ollama run qwen2.5:3b # Chạy cực mượt trên GPU RTX 3060 của bạn</pre>`,
+              "interview": `<p><strong>Q: Ưu và nhược điểm của Private AI Stack so với Cloud API?</strong><br>A: Ưu điểm: Bảo mật tuyệt đối, không tốn tiền API hàng tháng. Nhược điểm: Cần đầu tư phần cứng GPU ban đầu và tự lo khâu mở rộng (Auto-scaling).</p>`
+            },
+            {
+              "id": "p5_lab2",
+              "title": "Lab 2: Thiết lập Guardrails phòng thủ tấn công Prompt Injection & rò rỉ dữ liệu",
+              "completed": false,
+              "desc": "Áp dụng kỹ thuật Red Teaming, kiểm duyệt đầu vào (Input Sanitization), phòng chống Jailbreak và rò rỉ System Prompt.",
+              "theory": `<p>Prompt Injection là mối đe dọa bảo mật số 1 theo bảng xếp hạng OWASP Top 10 for LLMs. Người dùng xấu có thể chèn câu lệnh ép AI bỏ qua quy định hoặc tiết lộ mật khẩu hệ thống.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-rose-300">User Input -> [ Guardrail Filter / An ninh đầu vào ] ──(Chứa mã độc / Injection)──> [ Chặn & Cảnh báo ]
+                                       │
+                                   (Hợp lệ)
+                                       ▼
+                                  [ LLM Inference ]</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400"># Sử dụng NeMo Guardrails hoặc Input Validation Layer</pre>`,
+              "interview": `<p><strong>Q: Phân biệt Direct Prompt Injection và Indirect Prompt Injection?</strong><br>A: Direct là người dùng trực tiếp ra lệnh ('Bỏ qua chỉ dẫn trước đó...'). Indirect là hacker chèn mã độc vào file PDF hoặc trang web mà AI được giao nhiệm vụ đọc.</p>`
+            },
+            {
+              "id": "p5_lab3",
+              "title": "Lab 3: Đóng gói đồ án Capstone hoàn chỉnh với Docker và CI/CD",
+              "completed": false,
+              "desc": "Tạo đồ án tốt nghiệp chuẩn kỹ sư: Tích hợp từ Giai đoạn 1 đến Giai đoạn 5, có tài liệu README, video demo và bộ test tự động.",
+              "theory": `<p>Một đồ án Capstone hoàn chỉnh có Docker, Unit Test và tài liệu kiến trúc sạch sẽ có giá trị gấp 10 lần một CV xin việc chỉ ghi danh sách khóa học lý thuyết.</p>`,
+              "diagram": `<div class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-rose-300">Git Push -> GitHub Actions CI (Run Tests) -> Docker Build -> Push Container Registry -> Deploy Production</div>`,
+              "code": `<pre class="p-3 bg-slate-950 rounded-xl font-mono text-xs text-emerald-400">pytest tests/
+docker compose up -d</pre>`,
+              "interview": `<p><strong>Q: Tiêu chí nào quan trọng nhất khi đánh giá một AI Engineer mới ra trường?</strong><br>A: Khả năng biến ý tưởng thành sản phẩm chạy được thực tế, hiểu rõ luồng dữ liệu, làm chủ môi trường và có tư duy bảo mật/chi phí.</p>`
+            }
           ]
         }
       ]
     };
 
-    let roadmapData = JSON.parse(JSON.stringify(DEFAULT_ROADMAP_DATA));
+    let roadmapData = ENRICHED_ROADMAP;
     let currentFilter = 'all';
+    let searchQuery = '';
 
-    async function init() {
+    function init() {
       loadSavedProgress();
-      await fetchSystemSpecs();
-      await tryFetchBackendRoadmap();
+      fetchSystemSpecs();
       renderRoadmap();
       updateProgress();
     }
@@ -221,19 +591,13 @@
         const local = localStorage.getItem('ai_engineer_progress');
         if (local) {
           const prog = JSON.parse(local);
-          applyProgress(prog);
+          roadmapData.phases.forEach(p => {
+            p.labs.forEach(l => {
+              if (prog[l.id] !== undefined) l.completed = prog[l.id];
+            });
+          });
         }
       } catch (e) {}
-    }
-
-    function applyProgress(prog) {
-      roadmapData.phases.forEach(p => {
-        p.labs.forEach(l => {
-          if (prog[l.id] !== undefined) {
-            l.completed = prog[l.id];
-          }
-        });
-      });
     }
 
     async function fetchSystemSpecs() {
@@ -252,24 +616,11 @@
           return;
         }
       } catch (err) {}
-      // GitHub Pages / Standalone Fallback Badge
       badgeText.innerHTML = `
         <strong class="text-indigo-300">GitHub Pages Mode</strong> | 
         <span class="text-emerald-400">RTX 3060 CUDA Lab Ready</span> | 
         <span class="text-slate-400">Auto-sync LocalStorage</span>
       `;
-    }
-
-    async function tryFetchBackendRoadmap() {
-      try {
-        const res = await fetch('/api/roadmap');
-        if (res.ok) {
-          const data = await res.json();
-          roadmapData = data;
-        }
-      } catch (err) {
-        // Keeps embedded roadmapData
-      }
     }
 
     function renderRoadmap() {
@@ -279,27 +630,48 @@
       roadmapData.phases.forEach(phase => {
         if (currentFilter !== 'all' && phase.id !== currentFilter) return;
 
+        // Filter labs by search query
+        const filteredLabs = phase.labs.filter(l => {
+          if (!searchQuery) return true;
+          return l.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                 l.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                 phase.skills.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()));
+        });
+
+        if (searchQuery && filteredLabs.length === 0) return;
+
         const phaseEl = document.createElement('div');
-        phaseEl.className = 'glass p-6 rounded-2xl border border-slate-800 transition-all hover:border-slate-700';
-        
-        // Render Skills Tags
+        phaseEl.className = 'glass p-5 rounded-2xl border border-slate-800 transition-all hover:border-slate-700';
+
         const skillsHtml = phase.skills.map(s => 
           `<span class="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-800/80 text-indigo-300 border border-slate-700">${s}</span>`
         ).join('');
 
-        // Render Labs
-        const labsHtml = phase.labs.map(lab => `
-          <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 cursor-pointer transition-all">
-            <input type="checkbox" 
-                   onchange="toggleLab('${lab.id}', this.checked)" 
-                   ${lab.completed ? 'checked' : ''} 
-                   class="w-4 h-4 rounded border-slate-700 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-slate-900 bg-slate-800">
-            <span class="text-sm ${lab.completed ? 'line-through text-slate-500' : 'text-slate-200'}">${lab.title}</span>
-          </label>
+        const labsHtml = filteredLabs.map(lab => `
+          <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group">
+            <div class="flex items-start sm:items-center gap-3">
+              <input type="checkbox" 
+                     onchange="toggleLab('${lab.id}', this.checked)" 
+                     ${lab.completed ? 'checked' : ''} 
+                     class="mt-1 sm:mt-0 w-4 h-4 rounded border-slate-700 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-slate-900 bg-slate-800 cursor-pointer">
+              <div>
+                <h5 class="text-xs sm:text-sm font-bold ${lab.completed ? 'line-through text-slate-500' : 'text-white'}">
+                  ${lab.title}
+                </h5>
+                <p class="text-[11px] text-slate-400 mt-0.5">${lab.desc}</p>
+              </div>
+            </div>
+
+            <!-- Action Button: View Details & Code -->
+            <button onclick="openModal('${phase.id}', '${lab.id}')" 
+                    class="self-end sm:self-auto px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 transition-all flex items-center gap-1.5 min-w-max">
+              <i class="fa-solid fa-book-open text-[10px]"></i> Xem Chi Tiết & Code
+            </button>
+          </div>
         `).join('');
 
         phaseEl.innerHTML = `
-          <div class="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-3">
+          <div class="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-2">
             <div class="flex items-center gap-3">
               <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                 ${phase.badge}
@@ -309,15 +681,17 @@
             <span class="text-xs text-slate-500 font-mono">Thư mục: /${phase.code}</span>
           </div>
 
-          <h3 class="text-lg font-bold text-white mb-2">${phase.title}</h3>
-          <p class="text-sm text-slate-400 mb-4">${phase.summary}</p>
+          <h3 class="text-base font-bold text-white mb-1.5">${phase.title}</h3>
+          <p class="text-xs text-slate-400 mb-3.5">${phase.summary}</p>
 
-          <div class="flex flex-wrap gap-1.5 mb-5">
+          <div class="flex flex-wrap gap-1.5 mb-4">
             ${skillsHtml}
           </div>
 
-          <div class="space-y-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Các bài thực hành (Hands-on Labs):</h4>
+          <div class="space-y-2.5">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-indigo-400"></i> Danh Sách Bài Thực Hành (Click để xem hướng dẫn trực quan):
+            </h4>
             ${labsHtml}
           </div>
         `;
@@ -326,7 +700,7 @@
       });
     }
 
-    async function toggleLab(labId, isChecked) {
+    function toggleLab(labId, isChecked) {
       let progressMap = {};
       try {
         progressMap = JSON.parse(localStorage.getItem('ai_engineer_progress') || '{}');
@@ -337,35 +711,23 @@
         localStorage.setItem('ai_engineer_progress', JSON.stringify(progressMap));
       } catch (e) {}
 
-      // Update in memory
-      for (const phase of roadmapData.phases) {
-        for (const lab of phase.labs) {
-          if (lab.id === labId) {
-            lab.completed = isChecked;
-          }
-        }
-      }
+      roadmapData.phases.forEach(p => {
+        p.labs.forEach(l => {
+          if (l.id === labId) l.completed = isChecked;
+        });
+      });
+
       renderRoadmap();
       updateProgress();
-
-      // Try syncing to local backend if available
-      try {
-        await fetch('/api/progress', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ [labId]: isChecked })
-        });
-      } catch (err) {}
     }
 
     function updateProgress() {
       let total = 0;
       let completed = 0;
-
-      roadmapData.phases.forEach(phase => {
-        phase.labs.forEach(lab => {
+      roadmapData.phases.forEach(p => {
+        p.labs.forEach(l => {
           total++;
-          if (lab.completed) completed++;
+          if (l.completed) completed++;
         });
       });
 
@@ -381,10 +743,61 @@
         btn.classList.remove('bg-indigo-600', 'text-white');
         btn.classList.add('bg-slate-800', 'text-slate-300');
       });
-      event.target.classList.remove('bg-slate-800', 'text-slate-300');
-      event.target.classList.add('bg-indigo-600', 'text-white');
+      const btns = document.querySelectorAll('.phase-tab-btn');
+      if (phaseId === 'all') btns[0].classList.add('bg-indigo-600', 'text-white');
+      else if (phaseId >= 1 && phaseId <= 5) btns[phaseId].classList.add('bg-indigo-600', 'text-white');
       renderRoadmap();
     }
+
+    function handleSearch(val) {
+      searchQuery = val;
+      renderRoadmap();
+    }
+
+    // MODAL LOGIC
+    function openModal(phaseId, labId) {
+      const phase = roadmapData.phases.find(p => p.id == phaseId);
+      if (!phase) return;
+      const lab = phase.labs.find(l => l.id == labId);
+      if (!lab) return;
+
+      document.getElementById('modal-badge').innerText = phase.badge;
+      document.getElementById('modal-title').innerText = lab.title;
+      
+      document.getElementById('mcontent-theory').innerHTML = lab.theory || '<p>Đang cập nhật...</p>';
+      document.getElementById('mcontent-diagram').innerHTML = lab.diagram || '<p>Đang cập nhật...</p>';
+      document.getElementById('mcontent-code').innerHTML = lab.code || '<p>Đang cập nhật...</p>';
+      document.getElementById('mcontent-interview').innerHTML = lab.interview || '<p>Đang cập nhật...</p>';
+
+      switchModalTab('theory');
+      document.getElementById('detail-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detail-modal').classList.add('hidden');
+    }
+
+    function switchModalTab(tabName) {
+      document.querySelectorAll('.mtab-btn').forEach(b => {
+        b.classList.remove('active', 'border-indigo-500', 'text-indigo-400', 'font-bold');
+        b.classList.add('border-transparent', 'text-slate-400');
+      });
+      document.querySelectorAll('.modal-tab-content').forEach(c => c.classList.add('hidden'));
+
+      const activeBtn = document.getElementById(`mtab-${tabName}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'border-indigo-500', 'text-indigo-400', 'font-bold');
+        activeBtn.classList.remove('border-transparent', 'text-slate-400');
+      }
+
+      const activeContent = document.getElementById(`mcontent-${tabName}`);
+      if (activeContent) activeContent.classList.remove('hidden');
+    }
+
+    // Close modal on Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
 
     window.addEventListener('DOMContentLoaded', init);
   </script>
