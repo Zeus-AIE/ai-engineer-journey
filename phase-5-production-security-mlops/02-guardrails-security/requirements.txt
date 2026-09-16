@@ -1,0 +1,4 @@
+# Regular expressions uses Python Standard Library re!
+# Optional for advanced semantic guardrails:
+nemoguardrails>=0.7.0
+pydantic>=2.0.0

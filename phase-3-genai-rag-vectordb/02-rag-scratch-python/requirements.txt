@@ -1,0 +1,5 @@
+# Pure Python RAG runs without external dependencies!
+# Optional for production:
+sentence-transformers>=2.2.0
+qdrant-client>=1.6.0
+chromadb>=0.4.0
