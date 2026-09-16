@@ -1,5 +1,11 @@
 # 🚀 AI Engineer Roadmap (2026 Edition) - Synthesis of Global & Practical AI
 
+[![Live Demo on GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-6366f1?style=for-the-badge&logo=github&logoColor=white)](https://zeus-aie.github.io/ai-engineer-journey/)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Docker Ready](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+
+> 🌐 **Dùng thử trực tiếp không cần chạy local tại:** **[https://zeus-aie.github.io/ai-engineer-journey/](https://zeus-aie.github.io/ai-engineer-journey/)**
+
 > **Được tổng hợp từ các kho lưu trữ hàng đầu thế giới & triết lý thực chiến:**
 > * [Ch-Balaji/ai-engineer-roadmap](https://github.com/Ch-Balaji/ai-engineer-roadmap) *(26-week curriculum & project-based)*
 > * [mlabonne/llm-course](https://github.com/mlabonne/llm-course) *(The definitive guide to LLMs, Quantization, Fine-tuning)*
