@@ -137,6 +137,57 @@
       background: #2a2421 !important;
       border-left-color: #f59e0b !important;
     }
+    /* Visual Diagram Box Styling Across Themes */
+    html.theme-light .visual-diagram-box {
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+    }
+    html.theme-light .visual-diagram-box .bg-slate-950,
+    html.theme-light .visual-diagram-box .bg-slate-950\/80,
+    html.theme-light .visual-diagram-box .bg-slate-950\/70,
+    html.theme-light .visual-diagram-box .bg-slate-900 {
+      background-color: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+    }
+    html.theme-light .visual-diagram-box .text-white {
+      color: #0f172a !important;
+    }
+    html.theme-light .visual-diagram-box .text-slate-200,
+    html.theme-light .visual-diagram-box .text-slate-300 {
+      color: #1e293b !important;
+    }
+    html.theme-light .visual-diagram-box .text-slate-400 {
+      color: #475569 !important;
+    }
+    html.theme-light .text-indigo-300, html.theme-light .text-indigo-400 { color: #4338ca !important; }
+    html.theme-light .text-purple-300, html.theme-light .text-purple-400 { color: #6b21a8 !important; }
+    html.theme-light .text-emerald-300, html.theme-light .text-emerald-400 { color: #047857 !important; }
+    html.theme-light .text-amber-300, html.theme-light .text-amber-400 { color: #b45309 !important; }
+    html.theme-light .text-rose-300, html.theme-light .text-rose-400 { color: #be123c !important; }
+    html.theme-light .text-cyan-300, html.theme-light .text-cyan-400 { color: #0e7490 !important; }
+
+    /* Modal Diagram & Code Formatting */
+    #mcontent-diagram .font-mono,
+    #mcontent-diagram pre {
+      white-space: pre-wrap !important;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      line-height: 1.6;
+    }
+    html.theme-light #mcontent-diagram .bg-slate-950,
+    html.theme-light #mcontent-code .bg-slate-950 {
+      background-color: #f8fafc !important;
+      border-color: #cbd5e1 !important;
+    }
+    html.theme-light #detail-modal .bg-slate-900 {
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+    }
+    html.theme-light #detail-modal .bg-slate-950\/70 {
+      background-color: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+    }
 
     /* Terminal Simulator Stays Authentically Dark in all themes */
     .term-window {
@@ -403,21 +454,172 @@
               Một chip GPU chuyên dụng như <strong>NVIDIA GeForce RTX 3060</strong> được phân cấp theo cấu trúc hình kim tự tháp:
             </p>
 
-            <!-- Memory Hierarchy Table / Diagram -->
-            <div class="my-4 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-indigo-300 overflow-x-auto">
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       GPU MEMORY HIERARCHY PYRAMID                          │
-├────────────────────────────┬──────────────┬──────────────┬──────────────────┤
-│ Tầng Bộ Nhớ (Level)        │ Độ Trễ       │ Băng Thông   │ Dung Lượng       │
-├────────────────────────────┼──────────────┼──────────────┼──────────────────┤
-│ 1. Registers (Per Thread)  │ ~1 cycle     │ Cực đại      │ ~64 KB / SM      │
-│ 2. Shared Memory / L1      │ ~20-30 cycles│ ~10-15 TB/s  │ 128 KB / SM      │
-│ 3. L2 Cache (Shared Chip)  │ ~200 cycles  │ ~2-3 TB/s    │ 3 MB (RTX 3060)  │
-│ 4. VRAM GDDR6 (Device Mem) │ ~400 cycles  │ 360 GB/s     │ 6 GB (RTX 3060)  │
-│ ══════════════════════════ ╪ ════════════ ╪ ════════════ ╪ ════════════════ │
-│ 5. PCIe Gen4 x16 (BUS)     │ ~1000+ cycles│ 31.5 GB/s    │ [NÚT CỔ CHAI!]   │
-│ 6. Host System RAM (DDR4)  │ ~100+ ns     │ 40-60 GB/s   │ 16-32 GB         │
-└────────────────────────────┴──────────────┴──────────────┴──────────────────┘
+            <!-- Visual Graphic: GPU MEMORY HIERARCHY PYRAMID -->
+            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-indigo-500/30 shadow-xl space-y-4 visual-diagram-box">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-layer-group"></i>
+                  </span>
+                  <div>
+                    <h4 class="text-sm sm:text-base font-bold text-white m-0">KIM TỰ THÁP PHÂN TẦNG BỘ NHỚ (GPU MEMORY HIERARCHY PYRAMID)</h4>
+                    <p class="text-[11px] text-slate-400 m-0">Đoạn đường dữ liệu di chuyển từ CPU đến nhân tính toán của GPU</p>
+                  </div>
+                </div>
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Stanford CS329S / CMU 11-785</span>
+              </div>
+
+              <!-- Pyramid Stack Layers -->
+              <div class="space-y-2.5 pt-2">
+                
+                <!-- Level 1: Registers -->
+                <div class="p-3 rounded-xl bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border border-amber-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-black bg-amber-500 text-slate-950 uppercase">Tầng 1 (Đỉnh)</span>
+                    <div>
+                      <div class="font-bold text-xs sm:text-sm text-amber-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt"></i> Registers (Thanh Ghi Nội Bộ Nhân CUDA)
+                      </div>
+                      <div class="text-[11px] text-slate-400">Nằm sát cạnh ALU, cung cấp toán hạng tức thời cho phép nhân Tensor</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-right">
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-emerald-400">Độ trễ: ~1 cycle</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-amber-300">~64 KB / SM</span>
+                  </div>
+                </div>
+
+                <!-- Level 2: Shared Memory & L1 Cache -->
+                <div class="p-3 rounded-xl bg-gradient-to-r from-indigo-500/20 via-indigo-500/10 to-transparent border border-indigo-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500 text-white uppercase">Tầng 2</span>
+                    <div>
+                      <div class="font-bold text-xs sm:text-sm text-indigo-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-microchip"></i> Shared Memory / L1 Cache
+                      </div>
+                      <div class="text-[11px] text-slate-400">Bộ nhớ chung tốc độ cực cao chia sẻ giữa các Threads trong cùng 1 Block</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-right">
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-emerald-400">20-30 cycles</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-indigo-300">10-15 TB/s</span>
+                  </div>
+                </div>
+
+                <!-- Level 3: L2 Cache -->
+                <div class="p-3 rounded-xl bg-gradient-to-r from-purple-500/20 via-purple-500/10 to-transparent border border-purple-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500 text-white uppercase">Tầng 3</span>
+                    <div>
+                      <div class="font-bold text-xs sm:text-sm text-purple-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-memory"></i> L2 Cache (Bộ Nhớ Đệm Toàn Chip GPU)
+                      </div>
+                      <div class="text-[11px] text-slate-400">Bộ đệm trung chuyển chia sẻ cho toàn bộ 30 Streaming Multiprocessors (SMs)</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-right">
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-yellow-400">~200 cycles</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-purple-300">3 MB (RTX 3060)</span>
+                  </div>
+                </div>
+
+                <!-- Level 4: VRAM GDDR6 -->
+                <div class="p-3 rounded-xl bg-gradient-to-r from-emerald-500/20 via-emerald-500/10 to-transparent border border-emerald-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-slate-950 uppercase">Tầng 4</span>
+                    <div>
+                      <div class="font-bold text-xs sm:text-sm text-emerald-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-database"></i> VRAM GDDR6 (Bộ Nhớ Thiết Bị GPU)
+                      </div>
+                      <div class="text-[11px] text-slate-400">Nơi chứa Model Weights (LLMs, YOLO), KV-Cache và Activation Tensors</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-right">
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-emerald-400">360 GB/s</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-emerald-300">6 GB GDDR6</span>
+                  </div>
+                </div>
+
+                <!-- ⚠️ CRITICAL BOTTLENECK: PCIe Gen4 x16 -->
+                <div class="p-3.5 rounded-xl bg-rose-500/15 border-2 border-rose-500/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div class="flex items-start sm:items-center gap-3">
+                    <span class="px-2 py-1 rounded text-[10px] font-black bg-rose-600 text-white uppercase flex items-center gap-1">
+                      <i class="fa-solid fa-triangle-exclamation"></i> NÚT CỔ CHAI
+                    </span>
+                    <div>
+                      <div class="font-black text-xs sm:text-sm text-rose-300">
+                        Đường Truyền Bus PCIe Gen4 x16 (Giữa RAM Máy Chủ & GPU)
+                      </div>
+                      <div class="text-[11px] text-rose-200/90 font-medium mt-0.5">
+                        Băng thông chỉ 31.5 GB/s (Chậm hơn VRAM gấp 11.4 lần!). Điểm nghẽn gây tụt FPS và sụt giảm 80% hiệu năng nếu nạp dữ liệu sai cách!
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] shrink-0">
+                    <span class="px-2 py-1 rounded bg-rose-950 text-rose-300 font-bold border border-rose-500/40">31.5 GB/s • 1000+ cycles</span>
+                  </div>
+                </div>
+
+                <!-- Level 5: Host System RAM -->
+                <div class="p-3 rounded-xl bg-gradient-to-r from-slate-700/30 via-slate-800/20 to-transparent border border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-200 uppercase">Tầng 5 (Đáy)</span>
+                    <div>
+                      <div class="font-bold text-xs sm:text-sm text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-server"></i> Host System RAM (DRAM DDR4/DDR5)
+                      </div>
+                      <div class="text-[11px] text-slate-400">Nơi CPU quản lý tiến trình hệ điều hành, đọc dữ liệu ảnh/file từ SSD</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-right">
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-slate-300">~100+ ns</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-950/70 border border-slate-800 text-slate-300">40-60 GB/s • 16-32 GB</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Visual Comparison Bar Chart -->
+              <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2 text-xs">
+                <div class="font-bold text-slate-300 mb-2 flex items-center gap-1.5">
+                  <i class="fa-solid fa-chart-simple text-indigo-400"></i> Trực Quan Hóa Băng Thông: Tại Sao Không Được Chuyển Tensor Liên Tục Qua PCIe?
+                </div>
+                
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-[11px] text-slate-400">
+                    <span>VRAM GDDR6 (Nội bộ GPU)</span>
+                    <span class="text-emerald-400 font-mono font-bold">360 GB/s (100%)</span>
+                  </div>
+                  <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                    <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full" style="width: 100%"></div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5 pt-1">
+                  <div class="flex justify-between text-[11px] text-slate-400">
+                    <span>Host System RAM (DDR4)</span>
+                    <span class="text-slate-300 font-mono">50 GB/s (13.8%)</span>
+                  </div>
+                  <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-slate-500 h-full rounded-full" style="width: 13.8%"></div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5 pt-1">
+                  <div class="flex justify-between text-[11px] text-rose-300 font-semibold">
+                    <span>Đường truyền PCIe Gen4 x16 (Nút thắt cổ chai)</span>
+                    <span class="text-rose-400 font-mono font-bold">31.5 GB/s (8.7% - CỰC CHẬM)</span>
+                  </div>
+                  <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                    <div class="bg-rose-500 h-full rounded-full" style="width: 8.7%"></div>
+                  </div>
+                </div>
+
+                <p class="text-[11px] text-slate-400 pt-1 leading-relaxed">
+                  💡 <strong>Giải pháp chuẩn PSA:</strong> Luôn sử dụng <code>pin_memory=True</code> và <code>non_blocking=True</code> trong PyTorch DataLoader. Tránh tuyệt đối việc gọi <code>.cpu().numpy()</code> bên trong vòng lặp inference thời gian thực!
+                </p>
+              </div>
+
             </div>
             <p>
               <strong>Hệ quả thực tiễn cho AI Engineer:</strong> Việc copy tensor từ CPU RAM sang GPU VRAM qua đường truyền PCIe ($31.5\text{ GB/s}$) chậm hơn gấp <strong>10 lần</strong> so với tốc độ đọc ghi nội bộ trong VRAM ($360\text{ GB/s}$). Kỹ sư AI bắt buộc phải:
@@ -437,22 +639,110 @@
               <li><strong>Tensor Cores (Kiến trúc Ampere):</strong> Các lõi chuyên dụng có khả năng thực hiện phép nhân cộng ma trận ma thuật $\mathbf{D} = \mathbf{A} \times \mathbf{B} + \mathbf{C}$ với ma trận kích thước $4 \times 4$ kích hoạt chuẩn dữ liệu FP16/BF16 chỉ trong <strong>1 chu kỳ xung nhịp</strong>. Kết quả đo benchmark tại Lab 5 cho thấy Tensor Cores FP16 đạt tốc độ nhanh gấp <strong>72.9x</strong> so với CPU FP32!</li>
             </ul>
 
-            <!-- CUDA SIMT Diagram -->
-            <div class="my-4 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-indigo-300 overflow-x-auto">
-[ CUDA Execution Model: Grid -> Block -> Warp ]
-┌─────────────────────────────────────────────────────────────┐
-│ CUDA Grid (Toàn bộ tác vụ tính toán)                        │
-│ ┌───────────────────────────┐ ┌───────────────────────────┐ │
-│ │ Thread Block 0            │ │ Thread Block 1            │ │
-│ │ ┌───────────────────────┐ │ │ ┌───────────────────────┐ │ │
-│ │ │ Warp 0: 32 Threads    │ │ │ │ Warp 0: 32 Threads    │ │ │
-│ │ │ (Chạy đồng thời SIMT) │ │ │ │ (Chạy đồng thời SIMT) │ │ │
-│ │ └───────────────────────┘ │ │ └───────────────────────┘ │ │
-│ │ ┌───────────────────────┐ │ │ ┌───────────────────────┐ │ │
-│ │ │ Warp 1: 32 Threads    │ │ │ │ Warp 1: 32 Threads    │ │ │
-│ │ └───────────────────────┘ │ │ └───────────────────────┘ │ │
-│ └───────────────────────────┘ └───────────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
+            <!-- Visual Graphic: CUDA Execution Model (Grid -> Block -> Warp) -->
+            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-indigo-500/30 shadow-xl space-y-4 visual-diagram-box">
+              <div class="flex items-center gap-2 border-b border-slate-800 pb-3">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+                  <i class="fa-solid fa-microchip"></i>
+                </span>
+                <div>
+                  <h4 class="text-sm sm:text-base font-bold text-white m-0">MÔ HÌNH THỰC THI CUDA (CUDA Execution Model: Grid ➔ Block ➔ Warp)</h4>
+                  <p class="text-[11px] text-slate-400 m-0">Phân rã hàng nghìn phép tính ma trận thành các Warps chạy song song trên phần cứng</p>
+                </div>
+              </div>
+
+              <!-- Nested Grid Box -->
+              <div class="p-4 rounded-xl bg-slate-950 border border-indigo-500/30 space-y-3">
+                <div class="flex items-center justify-between text-xs font-bold text-indigo-300">
+                  <span><i class="fa-solid fa-border-all mr-1"></i> CUDA Grid (Toàn bộ tác vụ tính toán ma trận Y = W * X + b)</span>
+                  <span class="text-[10px] text-slate-500 font-mono font-normal">Khởi tạo khi gọi Kernel Function</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <!-- Block 0 -->
+                  <div class="p-3.5 rounded-xl bg-slate-900 border border-indigo-500/20 space-y-2.5">
+                    <div class="flex justify-between items-center text-xs font-bold text-white">
+                      <span>Thread Block 0</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">SM 0</span>
+                    </div>
+
+                    <!-- Warp 0 -->
+                    <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 space-y-1.5">
+                      <div class="flex justify-between items-center text-[11px]">
+                        <span class="font-bold text-emerald-400"><i class="fa-solid fa-play text-[9px] mr-1"></i> Warp 0 (32 Threads)</span>
+                        <span class="text-[10px] text-slate-400 font-mono">SIMT Lockstep</span>
+                      </div>
+                      <div class="grid grid-cols-8 gap-1">
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T0</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T1</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T2</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T3</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">...</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T29</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T30</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T31</div>
+                      </div>
+                      <div class="text-[10px] text-slate-400">32 Threads thực thi đồng thời 1 lệnh duy nhất trong 1 chu kỳ clock</div>
+                    </div>
+
+                    <!-- Warp 1 -->
+                    <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 space-y-1.5">
+                      <div class="flex justify-between items-center text-[11px]">
+                        <span class="font-bold text-emerald-400"><i class="fa-solid fa-play text-[9px] mr-1"></i> Warp 1 (32 Threads)</span>
+                        <span class="text-[10px] text-slate-400 font-mono">SIMT Lockstep</span>
+                      </div>
+                      <div class="grid grid-cols-8 gap-1">
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">T32</div>
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">T33</div>
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">...</div>
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">T61</div>
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">T62</div>
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">T63</div>
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">...</div>
+                        <div class="h-4 rounded bg-indigo-500/30 border border-indigo-500/60 flex items-center justify-center text-[8px] font-mono text-indigo-300">Warp</div>
+                      </div>
+                      <div class="text-[10px] text-slate-400">Các threads độc lập dữ liệu nhưng chia sẻ Shared Memory</div>
+                    </div>
+                  </div>
+
+                  <!-- Block 1 -->
+                  <div class="p-3.5 rounded-xl bg-slate-900 border border-indigo-500/20 space-y-2.5">
+                    <div class="flex justify-between items-center text-xs font-bold text-white">
+                      <span>Thread Block 1</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">SM 1</span>
+                    </div>
+
+                    <!-- Warp 0 of Block 1 -->
+                    <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 space-y-1.5">
+                      <div class="flex justify-between items-center text-[11px]">
+                        <span class="font-bold text-emerald-400"><i class="fa-solid fa-play text-[9px] mr-1"></i> Warp 0 (32 Threads)</span>
+                        <span class="text-[10px] text-slate-400 font-mono">SIMT Lockstep</span>
+                      </div>
+                      <div class="grid grid-cols-8 gap-1">
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T0</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T1</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">...</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T29</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T30</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">T31</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">...</div>
+                        <div class="h-4 rounded bg-emerald-500/30 border border-emerald-500/60 flex items-center justify-center text-[8px] font-mono text-emerald-300">Warp</div>
+                      </div>
+                      <div class="text-[10px] text-slate-400">Chạy trên một Streaming Multiprocessor khác song song 100%</div>
+                    </div>
+
+                    <!-- Warning: Warp Divergence -->
+                    <div class="p-2.5 rounded-lg bg-amber-500/15 border border-amber-500/40 text-[11px] text-amber-200">
+                      <div class="font-bold flex items-center gap-1 text-amber-300 mb-1">
+                        <i class="fa-solid fa-code-branch"></i> Cảnh Báo Lỗi Kiến Trúc: Warp Divergence
+                      </div>
+                      Nếu viết lệnh rẽ nhánh <code>if (x > 0)</code> trong Kernel, một nửa threads phải đứng im chờ nửa kia chạy xong ➔ <strong>Mất 50% sức mạnh tính toán</strong>!
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
 
             <h3>3. Chuẩn Kiến Trúc Phần Mềm PSA (Production Software Architecture)</h3>
@@ -510,21 +800,60 @@ ssh -N -f -L 8888:localhost:8888 user@remote_server_ip
               YOLO giải quyết bài toán bằng cách chia bức ảnh thành lưới $S \times S$ và dự đoán trực tiếp tọa độ Bounding Box cùng xác suất nhãn trong **một lần lan truyền xuôi duy nhất (Single Forward Pass)**.
             </p>
 
-            <!-- Illustrated Flow -->
-            <div class="my-4 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-purple-300 overflow-x-auto">
-[ Image Input (640x640x3) ]
-           │
-           ▼
-[ Backbone: CSPDarknet ] ──> Trích xuất đặc trưng đa tỉ lệ (Feature Extraction)
-           │
-           ▼
-[ Neck: PANet / FPN ] ─────> Kết hợp đặc trưng nông (Spatial) & sâu (Semantic)
-           │
-           ▼
-[ Head: Anchor-Free ] ─────> Dự đoán Tọa độ Box (x,y,w,h) + Class Probabilities
-           │
-           ▼
-[ Non-Max Suppression (NMS) ] ──> Lọc bỏ các Box trùng lặp -> Output Bounding Boxes
+            <!-- Visual Graphic: YOLO Detection Pipeline -->
+            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-purple-500/30 shadow-xl space-y-4 visual-diagram-box">
+              <div class="flex items-center gap-2 border-b border-slate-800 pb-3">
+                <span class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
+                  <i class="fa-solid fa-eye"></i>
+                </span>
+                <div>
+                  <h4 class="text-sm sm:text-base font-bold text-white m-0">PIPELINE THỊ GIÁC MÁY TÍNH THỜI GIAN THỰC YOLOV8</h4>
+                  <p class="text-[11px] text-slate-400 m-0">Single Forward Pass từ ảnh nhị phân đến danh sách bounding boxes</p>
+                </div>
+              </div>
+
+              <!-- Pipeline Steps Horizontal Flow -->
+              <div class="grid grid-cols-1 sm:grid-cols-5 gap-2.5 text-center">
+                <!-- Step 1 -->
+                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-between space-y-1">
+                  <div class="w-7 h-7 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center text-xs font-bold">1</div>
+                  <div class="font-bold text-xs text-white">Image Input</div>
+                  <span class="text-[10px] font-mono text-purple-300">640x640x3 RGB</span>
+                  <div class="text-[10px] text-slate-400">Chuẩn hóa [0, 1]</div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30 flex flex-col items-center justify-between space-y-1">
+                  <div class="w-7 h-7 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xs font-bold">2</div>
+                  <div class="font-bold text-xs text-purple-300">Backbone</div>
+                  <span class="text-[10px] font-mono text-purple-200">CSPDarknet</span>
+                  <div class="text-[10px] text-slate-400">Trích xuất đặc trưng đa tỉ lệ</div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="p-3 rounded-xl bg-indigo-950/40 border border-indigo-500/30 flex flex-col items-center justify-between space-y-1">
+                  <div class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">3</div>
+                  <div class="font-bold text-xs text-indigo-300">Neck</div>
+                  <span class="text-[10px] font-mono text-indigo-200">PANet / FPN</span>
+                  <div class="text-[10px] text-slate-400">Trộn đặc trưng nông & sâu</div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex flex-col items-center justify-between space-y-1">
+                  <div class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-bold">4</div>
+                  <div class="font-bold text-xs text-emerald-300">Head</div>
+                  <span class="text-[10px] font-mono text-emerald-200">Anchor-Free</span>
+                  <div class="text-[10px] text-slate-400">Tọa độ x,y,w,h & Class prob</div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30 flex flex-col items-center justify-between space-y-1">
+                  <div class="w-7 h-7 rounded-lg bg-amber-600 text-white flex items-center justify-center text-xs font-bold">5</div>
+                  <div class="font-bold text-xs text-amber-300">NMS Lọc Trùng</div>
+                  <span class="text-[10px] font-mono text-amber-200">Non-Max Suppression</span>
+                  <div class="text-[10px] text-slate-400">IoU thresholding 0.45</div>
+                </div>
+              </div>
             </div>
 
             <h3>2. Thuật Toán Non-Max Suppression (NMS)</h3>
@@ -586,19 +915,67 @@ ssh -N -f -L 8888:localhost:8888 user@remote_server_ip
               RAG (Retrieval-Augmented Generation) giải quyết vấn đề này bằng cách chuyển đổi văn bản thành các vector đa chiều (Embeddings):
             </p>
 
-            <!-- Vector Space Diagram -->
-            <div class="my-4 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-300 overflow-x-auto">
-[ Câu Hỏi: "Điều kiện vay tín chấp?" ] ──(Embedding Model)──> Vector Q: [ 0.23, 0.81, -0.45, ... ]
-                                                                             │
-                                                                   (Cosine Search trong Vector DB)
-                                                                             │
-                                                                             ▼
-[ Kho Vector DB ] ──> Đo góc Cosine: cos(θ) = (A · B) / (||A|| * ||B||)
-  ├─ Chunk 1: "Quy chế vay lương 10tr..." ──> Score: 0.94  [TRÚNG!] ──┐
-  ├─ Chunk 2: "Thời gian mở cửa..."       ──> Score: 0.21             │
-  └─ Chunk 3: "Lãi suất tiền gửi..."      ──> Score: 0.35             │
-                                                                      ▼
-LLM System Prompt: "DỰA VÀO ĐOẠN TRÍCH: 'Quy chế vay lương 10tr...'. Hãy trả lời câu hỏi!"
+            <!-- Visual Graphic: RAG Pipeline & Vector Space Search -->
+            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-emerald-500/30 shadow-xl space-y-4 visual-diagram-box">
+              <div class="flex items-center gap-2 border-b border-slate-800 pb-3">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                  <i class="fa-solid fa-database"></i>
+                </span>
+                <div>
+                  <h4 class="text-sm sm:text-base font-bold text-white m-0">QUY TRÌNH TRUY XUẤT RAG & ĐO ĐỘ TƯƠNG ĐỒNG COSINE</h4>
+                  <p class="text-[11px] text-slate-400 m-0">Biến đổi câu hỏi tự nhiên thành vector và tìm kiếm đoạn trích liên quan nhất trong cơ sở tri thức</p>
+                </div>
+              </div>
+
+              <!-- Flow Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <!-- Box 1 -->
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Bước 1: Vector Hóa</span>
+                  <div class="font-bold text-xs text-white">Câu hỏi người dùng:</div>
+                  <div class="p-2 rounded bg-slate-900 text-xs text-slate-300 font-mono italic border border-slate-800">
+                    "Điều kiện vay tín chấp ngân hàng là gì?"
+                  </div>
+                  <div class="text-center text-xs text-slate-500">
+                    <i class="fa-solid fa-arrow-down"></i> (Embedding Model)
+                  </div>
+                  <div class="p-2 rounded bg-indigo-950/50 text-[11px] text-indigo-300 font-mono border border-indigo-500/30">
+                    Vector Q: [0.23, 0.81, -0.45, 0.12, ...]
+                  </div>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Bước 2: Tìm Kiếm Cosine</span>
+                  <div class="font-bold text-xs text-white">Kho Vector Database:</div>
+                  <div class="space-y-1.5 text-[11px]">
+                    <div class="p-2 rounded bg-emerald-950/60 border border-emerald-500/50 flex justify-between items-center text-emerald-300 font-bold">
+                      <span>Chunk 1: "Quy chế vay lương 10tr..."</span>
+                      <span class="px-1.5 py-0.5 rounded bg-emerald-500 text-slate-950 text-[10px]">0.94 (Trúng!)</span>
+                    </div>
+                    <div class="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between items-center text-slate-400">
+                      <span>Chunk 2: "Lãi suất tiền gửi..."</span>
+                      <span class="font-mono text-[10px]">0.35</span>
+                    </div>
+                    <div class="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between items-center text-slate-400">
+                      <span>Chunk 3: "Thời gian mở cửa..."</span>
+                      <span class="font-mono text-[10px]">0.21</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">Bước 3: Nạp Vào LLM Prompt</span>
+                  <div class="font-bold text-xs text-white">Tổng hợp câu trả lời:</div>
+                  <div class="p-2.5 rounded bg-purple-950/40 text-[11px] text-purple-200 border border-purple-500/30 leading-relaxed">
+                    <strong>Context Injection:</strong> "Dựa vào đoạn trích quy chế vay lương 10tr... Hãy trả lời rõ ràng cho khách hàng."
+                  </div>
+                  <div class="text-[10px] text-emerald-400 flex items-center gap-1 font-bold">
+                    <i class="fa-solid fa-check-circle"></i> Triệt tiêu 100% ảo giác (Hallucination)!
+                  </div>
+                </div>
+              </div>
             </div>
 
             <h3>3. Tối Ưu Chi Phí Với Prompt Caching</h3>
@@ -644,29 +1021,69 @@ LLM System Prompt: "DỰA VÀO ĐOẠN TRÍCH: 'Quy chế vay lương 10tr...'. 
               Các thư viện chain cũ (như LangChain LCEL) chỉ chạy một chiều (DAG). Nhưng trong thực tế, Agent cần có **vòng lặp (Loops)** để thử lại khi gọi API thất bại. LangGraph mô hình hóa Agent dưới dạng máy trạng thái (State Machine):
             </p>
 
-            <!-- LangGraph Diagram -->
-            <div class="my-4 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-amber-300 overflow-x-auto">
-                   ┌──────────────────────────────────────┐
-                   │        User Query Nhập Vào          │
-                   └──────────────────┬───────────────────┘
-                                      │
-                                      ▼
-                        ┌───────────────────────────┐
-                        │   Node 1: Phân Loại Ý Định │
-                        └─────────────┬─────────────┘
-                                      │
-                   ┌──────────────────┴──────────────────┐
-                   ▼ (Intent: Tra Cứu Tỷ Giá)             ▼ (Intent: Hỏi Quy Chế)
-     ┌───────────────────────────┐         ┌───────────────────────────┐
-     │ Node 2: Gọi Tool MCP API │         │   Node 3: Tra Cứu RAG DB  │
-     └─────────────┬─────────────┘         └─────────────┬─────────────┘
-                   │                                     │
-                   └──────────────────┬──────────────────┘
-                                      │
-                                      ▼
-                        ┌───────────────────────────┐
-                        │ Node 4: Tổng Hợp Phản Hồi │ ──> [ Trả Kết Quả Cho Khách ]
-                        └───────────────────────────┘
+            <!-- Visual Graphic: LangGraph State Machine -->
+            <div class="my-6 p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl space-y-4 visual-diagram-box">
+              <div class="flex items-center gap-2 border-b border-slate-800 pb-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                  <i class="fa-solid fa-robot"></i>
+                </span>
+                <div>
+                  <h4 class="text-sm sm:text-base font-bold text-white m-0">ĐỒ THỊ TRẠNG THÁI LANGGRAPH & CHU TRÌNH REACT</h4>
+                  <p class="text-[11px] text-slate-400 m-0">Chu trình ReAct (Reason + Act) với khả năng phân nhánh điều kiện và tự sửa lỗi</p>
+                </div>
+              </div>
+
+              <!-- State Machine Visual Flow -->
+              <div class="space-y-3">
+                <!-- User Input Node -->
+                <div class="max-w-md mx-auto p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+                  <span class="text-[10px] uppercase font-mono text-slate-400 font-bold">Điểm Khởi Đầu (User Input)</span>
+                  <div class="font-bold text-xs text-white">Yêu cầu từ khách hàng ("Kiểm tra số dư & tỷ giá USD")</div>
+                </div>
+
+                <div class="text-center text-amber-400 text-xs"><i class="fa-solid fa-arrow-down"></i></div>
+
+                <!-- Router Node -->
+                <div class="max-w-md mx-auto p-3.5 rounded-xl bg-indigo-950/60 border border-indigo-500/40 text-center space-y-1.5 shadow-lg">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500 text-white uppercase">Node 1: Phân Loại Ý Định (Intent Classifier)</span>
+                  <div class="text-xs text-slate-300 font-medium">LLM phân tích câu hỏi để quyết định nhánh thực thi tối ưu</div>
+                </div>
+
+                <div class="text-center text-indigo-400 text-xs font-semibold flex items-center justify-center gap-1">
+                  <i class="fa-solid fa-code-fork"></i> Phân Nhánh Điều Kiện
+                </div>
+
+                <!-- Branches -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <!-- Branch A: MCP Tool -->
+                  <div class="p-3.5 rounded-xl bg-amber-950/30 border border-amber-500/40 space-y-2">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-slate-950 uppercase">Nhánh A: Tra Cứu Số Liệu Động</span>
+                    <div class="font-bold text-xs text-amber-300">Node 2: Gọi Tool MCP API</div>
+                    <div class="text-[11px] text-slate-300">Kết nối MCP Server truy vấn tỷ giá hối đoái ngoại tệ theo thời gian thực</div>
+                    <div class="p-2 rounded bg-slate-950 text-[10px] font-mono text-emerald-400 border border-slate-800">
+                      Response: {"USD_VND": 25420, "updated": "now"}
+                    </div>
+                  </div>
+
+                  <!-- Branch B: RAG DB -->
+                  <div class="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/40 space-y-2">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-slate-950 uppercase">Nhánh B: Hỏi Đáp Chính Sách</span>
+                    <div class="font-bold text-xs text-emerald-300">Node 3: Tra Cứu RAG DB</div>
+                    <div class="text-[11px] text-slate-300">Truy xuất tài liệu quy chế biểu phí và điều khoản ngân hàng nội bộ</div>
+                    <div class="p-2 rounded bg-slate-950 text-[10px] font-mono text-emerald-400 border border-slate-800">
+                      Response: Top-1 Chunk (Score 0.94)
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center text-amber-400 text-xs"><i class="fa-solid fa-arrow-down"></i></div>
+
+                <!-- Synthesis Node -->
+                <div class="max-w-md mx-auto p-3.5 rounded-xl bg-purple-950/60 border border-purple-500/40 text-center space-y-1 shadow-lg">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500 text-white uppercase">Node 4: Tổng Hợp Phản Hồi Cuối</span>
+                  <div class="font-bold text-xs text-white">LLM Reasoner kết hợp dữ liệu Tool + Context trả về câu trả lời tự nhiên</div>
+                </div>
+              </div>
             </div>
 
             <h3>3. Giao Thức Model Context Protocol (MCP) Chuẩn 2026</h3>
@@ -708,21 +1125,92 @@ LLM System Prompt: "DỰA VÀO ĐOẠN TRÍCH: 'Quy chế vay lương 10tr...'. 
             </ul>
 
             <!-- Guardrails Diagram -->
-            <div class="my-4 p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-rose-300 overflow-x-auto">
-[ Dữ Liệu Đầu Vào Của Người Dùng / Tài Liệu PDF ]
-                     │
-                     ▼
-       ┌───────────────────────────┐
-       │   Lớp Phòng Thủ An Ninh   │
-       │   (Guardrail Filter Layer)│
-       └─────────────┬─────────────┘
-                     │
-        ┌────────────┴────────────┐
-        ▼ (Phát hiện mã độc)      ▼ (Hợp lệ)
-  [ CHẶN & GHI LOG AN NINH ]  [ Đẩy Vào LLM Inference ]
-  - Regex pattern matching
-  - NeMo Guardrails
-  - Input Token Validation
+            <div class="visual-diagram-box my-6 p-5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+                  <span class="font-bold text-sm tracking-wider uppercase text-rose-400">KIẾN TRÚC PHÒNG THỦ: GUARDRAILS & INPUT VALIDATION PIPELINE</span>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30">OWASP Top 10 LLM01</span>
+              </div>
+
+              <div class="space-y-3">
+                <!-- Input Source Node -->
+                <div class="max-w-md mx-auto p-3 rounded-xl bg-slate-950 border border-slate-700 text-center space-y-1 shadow-md">
+                  <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest"><i class="fa-solid fa-arrow-down-to-bracket mr-1 text-indigo-400"></i> Dữ Liệu Đầu Vào Của Người Dùng / Tài Liệu PDF</div>
+                  <div class="font-bold text-xs text-white">Direct Prompts hoặc RAG Unstructured Sources (PDF, OCR, Docs)</div>
+                  <div class="text-[11px] text-slate-400">Nguy cơ tiềm ẩn: Prompt Injection, Jailbreaking, Malicious System Overrides</div>
+                </div>
+
+                <div class="text-center text-rose-400 text-xs"><i class="fa-solid fa-arrow-down"></i></div>
+
+                <!-- Guardrail Filter Layer (Multi-Stage Inspection Engine) -->
+                <div class="p-4 rounded-xl bg-slate-950 border-2 border-rose-500/50 space-y-3 shadow-lg">
+                  <div class="flex items-center justify-between">
+                    <div class="font-bold text-xs text-rose-300 flex items-center gap-2">
+                      <i class="fa-solid fa-shield-halved text-rose-400 text-sm"></i> Lớp Phòng Thủ An Ninh (Guardrail Filter Layer)
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30">Pre-Inference Gatekeeper</span>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 space-y-1">
+                      <div class="text-[11px] font-bold text-amber-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-code text-[10px]"></i> Regex & Heuristics
+                      </div>
+                      <div class="text-[10px] text-slate-300">Quét Regex pattern matching, chặn từ khóa đen ("ignore instructions"), PII, CC/Pass</div>
+                    </div>
+                    <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 space-y-1">
+                      <div class="text-[11px] font-bold text-indigo-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-brain text-[10px]"></i> NeMo Guardrails
+                      </div>
+                      <div class="text-[10px] text-slate-300">Phân tích hội thoại ngữ nghĩa, kiểm soát Topical Rails, ngăn chặn chuyển chủ đề ngoài phạm vi</div>
+                    </div>
+                    <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 space-y-1">
+                      <div class="text-[11px] font-bold text-cyan-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-calculator text-[10px]"></i> Input Token Validation
+                      </div>
+                      <div class="text-[10px] text-slate-300">Giới hạn Context Token Budget, kiểm tra Perplexity & bất thường chuỗi ký tự ẩn</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center text-rose-400 text-xs flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-code-fork"></i>
+                  <span class="font-mono text-[11px] text-slate-400">Phân Luồng Quyết Định (Security Decision Fork)</span>
+                </div>
+
+                <!-- Two Branch Outcome Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <!-- Branch A: Blocked -->
+                  <div class="p-4 rounded-xl bg-rose-950/40 border border-rose-500/50 space-y-2 shadow-md">
+                    <div class="flex items-center justify-between">
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-600 text-white uppercase"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Phát Hiện Mã Độc</span>
+                      <span class="text-[10px] font-mono text-rose-300">Action: DROP & ALERT</span>
+                    </div>
+                    <div class="font-bold text-xs text-rose-300">[ CHẶN & GHI LOG AN NINH ]</div>
+                    <ul class="text-[11px] text-slate-300 space-y-1 list-disc pl-4">
+                      <li>Từ chối request ngay lập tức với mã lỗi HTTP 403 Security Exception</li>
+                      <li>Ghi Audit Log kèm IP, user ID, timestamp và token vi phạm vào SIEM</li>
+                      <li>Không bao giờ chuyển tiếp prompt độc hại vào mô hình AI</li>
+                    </ul>
+                  </div>
+
+                  <!-- Branch B: Allowed -->
+                  <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/50 space-y-2 shadow-md">
+                    <div class="flex items-center justify-between">
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-600 text-white uppercase"><i class="fa-solid fa-circle-check mr-1"></i> Hợp Lệ & An Toàn</span>
+                      <span class="text-[10px] font-mono text-emerald-300">Action: FORWARD</span>
+                    </div>
+                    <div class="font-bold text-xs text-emerald-300">[ Đẩy Vào LLM Inference ]</div>
+                    <ul class="text-[11px] text-slate-300 space-y-1 list-disc pl-4">
+                      <li>Gắn System Prompt bảo vệ bất biến (Immutable Prefix Framing)</li>
+                      <li>Gửi prompt sạch vào vLLM / Ollama Engine xử lý suy luận</li>
+                      <li>Output Guardrails kiểm duyệt câu trả lời trước khi gửi về Client</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <h3>2. Kiến Trúc Private AI Stack Cho Ngân Hàng & Doanh Nghiệp</h3>
@@ -735,6 +1223,48 @@ LLM System Prompt: "DỰA VÀO ĐOẠN TRÍCH: 'Quy chế vay lương 10tr...'. 
               <li>Chạy hoàn toàn trên máy chủ nội bộ (On-Premises) bằng **Ollama** hoặc **vLLM** kết hợp **Open WebUI**.</li>
               <li>Hệ thống ngắt hoàn toàn kết nối Internet (Air-gapped Network), bảo vệ bí mật kinh doanh tuyệt đối.</li>
             </ul>
+
+            <!-- Private AI Stack Diagram Box -->
+            <div class="visual-diagram-box my-6 p-5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                  <span class="font-bold text-sm tracking-wider uppercase text-emerald-400">KIẾN TRÚC PRIVATE AI STACK AIR-GAPPED ON-PREMISES</span>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Data Privacy Compliant</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-2">
+                  <div class="w-8 h-8 mx-auto rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm"><i class="fa-solid fa-users"></i></div>
+                  <div class="font-bold text-xs text-white">1. Client / Browser</div>
+                  <div class="text-[11px] text-slate-400">Cán bộ ngân hàng truy cập Web App nội bộ qua mạng LAN</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-2">
+                  <div class="w-8 h-8 mx-auto rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm"><i class="fa-solid fa-window-restore"></i></div>
+                  <div class="font-bold text-xs text-white">2. Open WebUI (Docker)</div>
+                  <div class="text-[11px] text-slate-400">Giao diện Chat trực quan, phân quyền RBAC & quản lý lịch sử trò chuyện</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-2">
+                  <div class="w-8 h-8 mx-auto rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm"><i class="fa-solid fa-server"></i></div>
+                  <div class="font-bold text-xs text-white">3. Ollama / vLLM Engine</div>
+                  <div class="text-[11px] text-slate-400">High-throughput Inference Server, Continuous Batching, PagedAttention</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-2">
+                  <div class="w-8 h-8 mx-auto rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm"><i class="fa-solid fa-microchip"></i></div>
+                  <div class="font-bold text-xs text-white">4. GPU VRAM (RTX 3060)</div>
+                  <div class="text-[11px] text-slate-400">Nạp trọng số Qwen 2.5 4-bit GGUF, 0% rò rỉ dữ liệu ra ngoài Internet</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-center justify-between text-xs">
+                <span class="text-emerald-300 font-mono"><i class="fa-solid fa-lock mr-1.5"></i> Air-gapped Firewall: Ngắt hoàn toàn kết nối Internet ngoại mạng</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">100% On-Premises</span>
+              </div>
+            </div>
           </article>
 
         </div>
