@@ -1,0 +1,2 @@
+# Minimal dependencies for AI Service demo
+requests>=2.31.0

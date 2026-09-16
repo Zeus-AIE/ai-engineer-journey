@@ -1,0 +1,82 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C environments
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ==========================================================
+# 🛑 AI & Data Science Specific Ignores (RẤT QUAN TRỌNG)
+# ==========================================================
+# 1. Bỏ qua các file checkpoint mô hình lớn (Tránh làm hỏng git repo)
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+*.ckpt
+*.h5
+*.pkl
+models/*
+!models/.gitkeep
+
+# 2. Bỏ qua dữ liệu thô và dữ liệu sau xử lý
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.sqlite3
+*.db
+
+# 3. Cache & Logs
+*.log
+runs/
+wandb/
+.neptune/
+mlruns/
+
+# 4. Secret & Keys
+.env*
+!*.env.example
+*.pem
+*.key
+token.json
+credentials.json

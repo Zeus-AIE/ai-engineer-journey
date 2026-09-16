@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Engineer Roadmap 2026 - Interactive Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            surface: {
+              dark: '#0b0f19',
+              card: '#1e293b',
+              border: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0b0f19; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .progress-glow { box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
+  </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Header & Hero -->
+  <header class="border-b border-slate-800 glass sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-indigo-500/30">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            AI Engineer Journey 2026
+          </h1>
+          <p class="text-xs text-slate-400">Tổng hợp từ Global Roadmaps & Triết lý thực chiến Mì AI</p>
+        </div>
+      </div>
+
+      <!-- Live Hardware / Cloud Status Badge -->
+      <div id="system-badge" class="flex items-center gap-3 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-700 text-xs">
+        <span class="flex h-2.5 w-2.5 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <span id="system-text" class="text-slate-300">Đang khởi tạo trạng thái...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 flex-1 w-full">
+
+    <!-- Progress Overview Card -->
+    <div class="glass p-6 rounded-2xl relative overflow-hidden">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-indigo-400"></i> Tiến Độ Lộ Trình Của Bạn
+          </h2>
+          <p class="text-sm text-slate-400">Hoàn thành các bài thực hành và tích chọn để lưu lại tiến trình (tự động đồng bộ trên đám mây & trình duyệt).</p>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span id="progress-percent" class="text-3xl font-black text-indigo-400">0%</span>
+          <span id="progress-counts" class="text-xs text-slate-400">(0/17 Labs)</span>
+        </div>
+      </div>
+      
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+        <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 h-3 rounded-full progress-glow transition-all duration-500" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Source Benchmarks Banner -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+      <a href="https://github.com/Ch-Balaji/ai-engineer-roadmap" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
+        <i class="fa-brands fa-github text-indigo-400 text-base"></i>
+        <span>Ch-Balaji Roadmap</span>
+      </a>
+      <a href="https://github.com/mlabonne/llm-course" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
+        <i class="fa-brands fa-github text-purple-400 text-base"></i>
+        <span>mlabonne LLM Course</span>
+      </a>
+      <a href="https://roadmap.sh/ai-engineer" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
+        <i class="fa-solid fa-map text-emerald-400 text-base"></i>
+        <span>roadmap.sh AI Engineer</span>
+      </a>
+      <a href="https://miai.vn" target="_blank" class="glass p-3 rounded-xl hover:border-indigo-500 transition-all flex items-center gap-2 text-slate-300">
+        <i class="fa-solid fa-bowl-food text-amber-400 text-base"></i>
+        <span>Mì AI Ecosystem</span>
+      </a>
+    </div>
+
+    <!-- Phase Filter Tabs -->
+    <div class="flex gap-2 overflow-x-auto pb-2 border-b border-slate-800" id="phase-tabs">
+      <button onclick="filterPhase('all')" class="phase-tab-btn active px-4 py-2 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition-all">Tất cả giai đoạn</button>
+      <button onclick="filterPhase(1)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 1: Hạ tầng</button>
+      <button onclick="filterPhase(2)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 2: ML & CV</button>
+      <button onclick="filterPhase(3)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 3: RAG & LLM</button>
+      <button onclick="filterPhase(4)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 4: Agent & MCP</button>
+      <button onclick="filterPhase(5)" class="phase-tab-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Giai đoạn 5: Production</button>
+    </div>
+
+    <!-- Phases Container -->
+    <div id="phases-list" class="space-y-6"></div>
+
+  </main>
+
+  <footer class="border-t border-slate-800 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>AI Engineer Practical Journey 2026 • Live on GitHub Pages • Powered by Zeus-AIE</p>
+  </footer>
+
+  <script>
+    // Embedded Default Roadmap Data (Dual-mode: works standalone on GitHub Pages and with local server)
+    const DEFAULT_ROADMAP_DATA = {
+      "title": "AI Engineer Roadmap 2026 - Interactive Journey",
+      "phases": [
+        {
+          "id": 1,
+          "code": "phase-1-foundation",
+          "title": "Giai Đoạn 1: Chuẩn Hóa Môi Trường & Kỹ Thuật Nền (Foundations)",
+          "badge": "Môi Trường & Hạ Tầng",
+          "summary": "Làm chủ Linux headless, Docker Compose, Virtualenv, Git workflows và khai thác tăng tốc độ phần cứng qua CUDA.",
+          "duration": "3-4 Tuần",
+          "skills": ["Linux / VPS", "Docker & Compose", "Python Virtualenv", "PyTorch CUDA", "Git Architecture"],
+          "labs": [
+            {"id": "p1_lab1", "title": "Lab 1: Quét hệ thống phần cứng & Virtualenv (env_probe.py)", "completed": true},
+            {"id": "p1_lab2", "title": "Lab 2: Đóng gói AI Microservice với Docker Hot-Reload", "completed": false},
+            {"id": "p1_lab3", "title": "Lab 3: Cấu hình Headless Jupyter Server an toàn với SSH Tunneling", "completed": false},
+            {"id": "p1_lab4", "title": "Lab 4: Chuẩn hóa cấu trúc thư mục dự án AI chuẩn Production", "completed": false}
+          ]
+        },
+        {
+          "id": 2,
+          "code": "phase-2-machine-learning-cv",
+          "title": "Giai Đoạn 2: Machine Learning & Computer Vision Thực Chiến",
+          "badge": "Core ML & Vision",
+          "summary": "Huấn luyện mô hình cơ bản, xử lý ảnh/video với OpenCV, Object Detection với YOLOv8/11 và đóng gói API.",
+          "duration": "3-4 Tuần",
+          "skills": ["Model Training Lifecycle", "OpenCV Video Stream", "YOLOv8/11 Inference", "FastAPI Endpoints"],
+          "labs": [
+            {"id": "p2_lab1", "title": "Lab 1: Huấn luyện và đánh giá mô hình ML cơ bản (Loss, Metrics)", "completed": false},
+            {"id": "p2_lab2", "title": "Lab 2: Nhận diện vật thể thời gian thực với YOLO trên GPU RTX 3060", "completed": false},
+            {"id": "p2_lab3", "title": "Lab 3: Xây dựng REST API phục vụ mô hình Computer Vision", "completed": false}
+          ]
+        },
+        {
+          "id": 3,
+          "code": "phase-3-genai-rag-vectordb",
+          "title": "Giai Đoạn 3: Kỷ Nguyên GenAI - LLM, Vector Database & RAG Chuyên Sâu",
+          "badge": "Trọng Tâm Nghề Nghiệp",
+          "summary": "Hiểu kiến trúc Transformer, bóc tách tài liệu với IBM Docling, Vector DB (Qdrant/Chroma), RAG code chay và Prompt Caching.",
+          "duration": "5-6 Tuần",
+          "skills": ["Transformer Architecture", "Document Parsing (Docling)", "Chunking Strategies", "Vector DB & Reranking", "Prompt Caching"],
+          "labs": [
+            {"id": "p3_lab1", "title": "Lab 1: Thử nghiệm trích xuất tài liệu phức tạp (PDF bảng biểu) với IBM Docling", "completed": false},
+            {"id": "p3_lab2", "title": "Lab 2: Xây dựng hệ thống RAG 'code chay' Python kết hợp Vector Database", "completed": false},
+            {"id": "p3_lab3", "title": "Lab 3: Tối ưu chi phí token và độ trễ với Prompt Caching", "completed": false},
+            {"id": "p3_lab4", "title": "Lab 4: Fine-tune mô hình Embedding cho văn bản Tiếng Việt", "completed": false}
+          ]
+        },
+        {
+          "id": 4,
+          "code": "phase-4-agentic-mcp-automation",
+          "title": "Giai Đoạn 4: Agentic AI, Model Context Protocol (MCP) & Tự Động Hóa",
+          "badge": "Agentic & Protocols",
+          "summary": "Xây dựng Agent tự suy nghĩ và hành động với LangGraph, quản lý bộ nhớ dài hạn, tạo MCP Server và tự động hóa với n8n.",
+          "duration": "4-5 Tuần",
+          "skills": ["LangGraph StateGraph", "Memory Systems (Memori)", "Model Context Protocol (MCP)", "n8n AI Workflows"],
+          "labs": [
+            {"id": "p4_lab1", "title": "Lab 1: Xây dựng hệ thống Multi-Agent phân nhánh với LangGraph", "completed": false},
+            {"id": "p4_lab2", "title": "Lab 2: Tự viết MCP Server trong 5 phút cấp quyền cho Claude/Cursor/Agent", "completed": false},
+            {"id": "p4_lab3", "title": "Lab 3: Dựng luồng tự động hóa n8n tích hợp Gemini Node và Webhook", "completed": false}
+          ]
+        },
+        {
+          "id": 5,
+          "code": "phase-5-production-security-mlops",
+          "title": "Giai Đoạn 5: Production, Bảo Mật, Private AI Stack & MLOps",
+          "badge": "Enterprise & MLOps",
+          "summary": "Chạy mô hình nội bộ bằng Ollama/Open WebUI, Private AI Stack an toàn, chống Prompt Injection và đạo đức AI trong Ngân hàng.",
+          "duration": "3-4 Tuần",
+          "skills": ["Local SLM / Ollama", "Open WebUI", "Private AI Architecture", "Prompt Injection Defense", "Responsible & Ethical AI"],
+          "labs": [
+            {"id": "p5_lab1", "title": "Lab 1: Triển khai cụm Private AI Stack nội bộ (Ollama + Open WebUI)", "completed": false},
+            {"id": "p5_lab2", "title": "Lab 2: Thiết lập Guardrails phòng thủ tấn công Prompt Injection & rò rỉ dữ liệu", "completed": false},
+            {"id": "p5_lab3", "title": "Lab 3: Đóng gói đồ án Capstone hoàn chỉnh với Docker và CI/CD", "completed": false}
+          ]
+        }
+      ]
+    };
+
+    let roadmapData = JSON.parse(JSON.stringify(DEFAULT_ROADMAP_DATA));
+    let currentFilter = 'all';
+
+    async function init() {
+      loadSavedProgress();
+      await fetchSystemSpecs();
+      await tryFetchBackendRoadmap();
+      renderRoadmap();
+      updateProgress();
+    }
+
+    function loadSavedProgress() {
+      try {
+        const local = localStorage.getItem('ai_engineer_progress');
+        if (local) {
+          const prog = JSON.parse(local);
+          applyProgress(prog);
+        }
+      } catch (e) {}
+    }
+
+    function applyProgress(prog) {
+      roadmapData.phases.forEach(p => {
+        p.labs.forEach(l => {
+          if (prog[l.id] !== undefined) {
+            l.completed = prog[l.id];
+          }
+        });
+      });
+    }
+
+    async function fetchSystemSpecs() {
+      const badgeText = document.getElementById('system-text');
+      try {
+        const res = await fetch('/api/system');
+        if (res.ok) {
+          const data = await res.json();
+          let gpuStr = data.gpu.includes('RTX') ? data.gpu : 'CPU Mode';
+          badgeText.innerHTML = `
+            <strong class="text-white">${data.os}</strong> | 
+            Python ${data.python_version} | 
+            <span class="text-emerald-400">${gpuStr}</span> | 
+            CUDA: ${data.cuda_ready ? '<span class="text-emerald-400">Khả dụng</span>' : '<span class="text-amber-400">Chưa kích hoạt</span>'}
+          `;
+          return;
+        }
+      } catch (err) {}
+      // GitHub Pages / Standalone Fallback Badge
+      badgeText.innerHTML = `
+        <strong class="text-indigo-300">GitHub Pages Mode</strong> | 
+        <span class="text-emerald-400">RTX 3060 CUDA Lab Ready</span> | 
+        <span class="text-slate-400">Auto-sync LocalStorage</span>
+      `;
+    }
+
+    async function tryFetchBackendRoadmap() {
+      try {
+        const res = await fetch('/api/roadmap');
+        if (res.ok) {
+          const data = await res.json();
+          roadmapData = data;
+        }
+      } catch (err) {
+        // Keeps embedded roadmapData
+      }
+    }
+
+    function renderRoadmap() {
+      const container = document.getElementById('phases-list');
+      container.innerHTML = '';
+
+      roadmapData.phases.forEach(phase => {
+        if (currentFilter !== 'all' && phase.id !== currentFilter) return;
+
+        const phaseEl = document.createElement('div');
+        phaseEl.className = 'glass p-6 rounded-2xl border border-slate-800 transition-all hover:border-slate-700';
+        
+        // Render Skills Tags
+        const skillsHtml = phase.skills.map(s => 
+          `<span class="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-800/80 text-indigo-300 border border-slate-700">${s}</span>`
+        ).join('');
+
+        // Render Labs
+        const labsHtml = phase.labs.map(lab => `
+          <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 cursor-pointer transition-all">
+            <input type="checkbox" 
+                   onchange="toggleLab('${lab.id}', this.checked)" 
+                   ${lab.completed ? 'checked' : ''} 
+                   class="w-4 h-4 rounded border-slate-700 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-slate-900 bg-slate-800">
+            <span class="text-sm ${lab.completed ? 'line-through text-slate-500' : 'text-slate-200'}">${lab.title}</span>
+          </label>
+        `).join('');
+
+        phaseEl.innerHTML = `
+          <div class="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-3">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                ${phase.badge}
+              </span>
+              <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i>${phase.duration}</span>
+            </div>
+            <span class="text-xs text-slate-500 font-mono">Thư mục: /${phase.code}</span>
+          </div>
+
+          <h3 class="text-lg font-bold text-white mb-2">${phase.title}</h3>
+          <p class="text-sm text-slate-400 mb-4">${phase.summary}</p>
+
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            ${skillsHtml}
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Các bài thực hành (Hands-on Labs):</h4>
+            ${labsHtml}
+          </div>
+        `;
+
+        container.appendChild(phaseEl);
+      });
+    }
+
+    async function toggleLab(labId, isChecked) {
+      let progressMap = {};
+      try {
+        progressMap = JSON.parse(localStorage.getItem('ai_engineer_progress') || '{}');
+      } catch (e) {}
+
+      progressMap[labId] = isChecked;
+      try {
+        localStorage.setItem('ai_engineer_progress', JSON.stringify(progressMap));
+      } catch (e) {}
+
+      // Update in memory
+      for (const phase of roadmapData.phases) {
+        for (const lab of phase.labs) {
+          if (lab.id === labId) {
+            lab.completed = isChecked;
+          }
+        }
+      }
+      renderRoadmap();
+      updateProgress();
+
+      // Try syncing to local backend if available
+      try {
+        await fetch('/api/progress', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ [labId]: isChecked })
+        });
+      } catch (err) {}
+    }
+
+    function updateProgress() {
+      let total = 0;
+      let completed = 0;
+
+      roadmapData.phases.forEach(phase => {
+        phase.labs.forEach(lab => {
+          total++;
+          if (lab.completed) completed++;
+        });
+      });
+
+      const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+      document.getElementById('progress-percent').innerText = `${pct}%`;
+      document.getElementById('progress-counts').innerText = `(${completed}/${total} Labs)`;
+      document.getElementById('progress-bar').style.width = `${pct}%`;
+    }
+
+    function filterPhase(phaseId) {
+      currentFilter = phaseId;
+      document.querySelectorAll('.phase-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-indigo-600', 'text-white');
+      renderRoadmap();
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
